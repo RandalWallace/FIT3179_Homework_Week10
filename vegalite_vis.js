@@ -1,4 +1,4 @@
-fetch("chloropleth_map.vg.json")
-  .then(response => response.json())
-  .then(spec => vegaEmbed("#map", spec, {actions: true}))
-  .catch(console.error);
+vegaEmbed('#map', 'https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/chlropleth_map.vg.json', {actions: true})
+    .then(result => {
+    console.log("Vega-Lite chart loaded from external file!");
+    }).catch(console.error);
