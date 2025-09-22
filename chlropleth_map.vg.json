@@ -1,0 +1,117 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 800,
+  "height": 450,
+  "title": {
+    "text": "Global Minimum Wage (USD) with Happiness Scores",
+    "fontSize": 16,
+    "fontWeight": "bold"
+  },
+  "projection": {"type": "equirectangular"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/main/ne_110m.json",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "mark": {"type": "geoshape", "stroke": "#ffffff", "strokeWidth": 0.5},
+      "transform": [
+        {
+          "lookup": "properties.NAME",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/main/data/minimum_wage.csv"
+            },
+            "key": "Country",
+            "fields": ["Hourly-PPP (Int$)"]
+          }
+        },
+        {
+          "calculate": "isValid(datum['Hourly-PPP (Int$)']) ? datum['Hourly-PPP (Int$)'] : 0",
+          "as": "HourlyPPP_Zero"
+        },
+        {
+          "calculate": "datum.HourlyPPP_Zero === 0 ? 'No Data Available' : '$' + format(datum.HourlyPPP_Zero, '.2f')",
+          "as": "formatted_wage"
+        }
+      ],
+      "encoding": {
+        "color": {
+          "field": "HourlyPPP_Zero",
+          "type": "quantitative",
+          "scale": {"range": ["#e5f5e0", "#00441b"]},
+          "title": "Minimum Wage (PPP-Adjusted)"
+        },
+        "tooltip": [
+          {"field": "properties.NAME", "type": "nominal", "title": "🌍 Country"},
+          {"field": "formatted_wage", "type": "nominal", "title": "💰 Hourly Minimum Wage (PPP)"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/main/ne_110m.json",
+        "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+      },
+      "mark": {"type": "geoshape", "fill": null, "stroke": "black", "strokeOpacity": 0.15}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/main/ne_110m.json",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.SUBUNIT",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/main/data/happiness_report.csv"
+            },
+            "key": "Country",
+            "fields": ["Happiness Score", "Happiness Rank", "Health (Life Expectancy)"]
+          }
+        },
+        {
+          "filter": "isValid(datum['Happiness Score']) && isValid(datum.properties.LABEL_X) && isValid(datum.properties.LABEL_Y)"
+        },
+        {
+          "calculate": "datum.properties.LABEL_Y + (datum['Happiness Score'] / 10) * 8",
+          "as": "spike_end_lat"
+        },
+        {
+          "calculate": "'#' + datum['Happiness Rank'] + ' of 158'",
+          "as": "formatted_rank"
+        },
+        {
+          "calculate": "datum['Happiness Score'] >= 7 ? 'Very Happy' : datum['Happiness Score'] >= 6 ? 'Happy' : datum['Happiness Score'] >= 5 ? 'Moderate' : datum['Happiness Score'] >= 4 ? 'Below Average' : 'Low Happiness'",
+          "as": "happiness_category"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "stroke": "#8e44ad",
+        "strokeWidth": 2,
+        "opacity": 0.9
+      },
+      "encoding": {
+        "longitude": {"field": "properties.LABEL_X", "type": "quantitative"},
+        "latitude": {"field": "properties.LABEL_Y", "type": "quantitative"},
+        "longitude2": {"field": "properties.LABEL_X", "type": "quantitative"},
+        "latitude2": {"field": "spike_end_lat", "type": "quantitative"},
+        "strokeWidth": {
+          "field": "Happiness Score",
+          "type": "quantitative",
+          "scale": {"range": [1, 25]},
+          "title": "Happiness Score"
+        },
+        "tooltip": [
+          {"field": "properties.SUBUNIT", "type": "nominal", "title": "🌍 Country"},
+          {"field": "happiness_category", "type": "nominal", "title": "😊 Happiness Level"},
+          {"field": "Happiness Score", "type": "quantitative", "title": "📊 Happiness Score", "format": ".2f"},
+          {"field": "formatted_rank", "type": "nominal", "title": "🏆 Global Ranking"},
+          {"field": "Health (Life Expectancy)", "type": "quantitative", "title": "🏥 Life Expectancy Index", "format": ".3f"}
+        ]
+      }
+    }
+  ]
+}
