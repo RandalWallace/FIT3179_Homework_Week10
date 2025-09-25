@@ -3,7 +3,11 @@ vegaEmbed('#map', 'https://raw.githubusercontent.com/RandalWallace/FIT3179_Assig
     console.log("Vega-Lite chart loaded from external file!");
     }).catch(console.error);
 
-vegaEmbed('#parallel_coordinate', 'https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/parallel_coordinate.vg.json', {actions: true})
-    .then(result => {
-    console.log("Vega-Lite chart loaded from external file!");
-    }).catch(console.error);
+vegaEmbed('#parallel_coordinate', 'https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/parallel_coordinate.vg.json', {
+    actions: {
+        export: true,
+        source: false,
+        compiled: false,
+        editor: true
+    }
+})
