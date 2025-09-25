@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Various Social Statistics across Countries"},
+  "width": 700,
+  "height": 420,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/data/world-data-2023.csv"
+  },
+
+  "transform": [
+    {
+      "fold": [
+        "Fertility Rate",
+        "Forested Area (%)",
+        "Gross primary education enrollment (%)",
+        "Gross tertiary education enrollment (%)",
+        "Infant mortality",
+        "Life expectancy",
+        "Out of pocket health expenditure",
+        "Population: Labor force participation (%)",
+        "Total tax rate",
+        "Unemployment rate"
+      ],
+      "as": ["metric", "value"]
+    },
+    {
+      "lookup": "metric",
+      "from": {
+        "data": {
+          "values": [
+            {"original": "Fertility Rate", "renamed": "Birth Rate"},
+            {"original": "Forested Area (%)", "renamed": "Forest Coverage"},
+            {"original": "Gross primary education enrollment (%)", "renamed": "Primary Education"},
+            {"original": "Gross tertiary education enrollment (%)", "renamed": "Higher Education"},
+            {"original": "Infant mortality", "renamed": "Child Mortality"},
+            {"original": "Life expectancy", "renamed": "Life Expectancy"},
+            {"original": "Out of pocket health expenditure", "renamed": "Health Spending"},
+            {"original": "Population: Labor force participation (%)", "renamed": "Labor Force"},
+            {"original": "Total tax rate", "renamed": "Tax Rate"},
+            {"original": "Unemployment rate", "renamed": "Unemployment"}
+          ]
+        },
+        "key": "original",
+        "fields": ["renamed"]
+      }
+    },
+    {
+      "calculate": "toNumber(replace(datum.value, /[%,$]/g, ''))",
+      "as": "value_num"
+    },
+    {
+      "filter": "datum.value_num != null && !isNaN(datum.value_num)"
+    },
+    {
+      "joinaggregate": [
+        {"op": "min", "field": "value_num", "as": "min_val"},
+        {"op": "max", "field": "value_num", "as": "max_val"}
+      ],
+      "groupby": ["renamed"]
+    },
+    {
+      "calculate": "datum.max_val === datum.min_val ? 0.5 : (datum.value_num - datum.min_val) / (datum.max_val - datum.min_val)",
+      "as": "value_normalised"
+    }
+  ],
+
+  "mark": {
+    "type": "line",
+    "point": true,
+    "interpolate": "linear",
+    "strokeWidth": 1.5
+  },
+
+  "encoding": {
+    "x": {
+      "field": "renamed",
+      "type": "ordinal",
+      "axis": {
+        "labelAngle": -45,
+        "title": null,
+        "labelLimit": 120
+      },
+      "scale": {"padding": 0.1}
+    },
+    "y": {
+      "field": "value_normalised",
+      "type": "quantitative",
+      "axis": {"title": "Normalised Value (0-1)"},
+      "scale": {"domain": [0, 1], "nice": false}
+    },
+    "detail": {"field": "Country"},
+    "color": {
+      "field": "Country",
+      "type": "nominal",
+      "legend": {"title": "Country", "columns": 3},
+      "scale": {"scheme": "category20"}
+    },
+    "opacity": {
+      "condition": {"selection": "highlight", "value": 0.9},
+      "value": 0.2
+    },
+    "tooltip": [
+      {"field": "Country", "title": "Country"},
+      {"field": "renamed", "title": "Metric"},
+      {"field": "value", "title": "Original Value"},
+      {"field": "value_normalised", "title": "Normalised", "format": ".3f"}
+    ]
+  },
+
+  "selection": {
+    "highlight": {
+      "type": "single",
+      "on": "mouseover",
+      "fields": ["Country"],
+      "empty": "none"
+    }
+  }
+}
