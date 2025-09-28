@@ -1,0 +1,264 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Social Statistics Radar Chart - Multi-Country Comparison"},
+  "width": 500,
+  "height": 500,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/data/world-data-2023.csv"
+  },
+
+  "params": [
+    {
+      "name": "country_select",
+      "value": ["Australia", "United States", "India"],
+      "bind": {
+        "input": "select",
+        "multiple": true,
+        "options": [
+          "Afghanistan", "Albania", "Algeria", "Angola", "Argentina", "Armenia", "Australia", 
+          "Austria", "Azerbaijan", "Bahrain", "Bangladesh", "Belarus", "Belgium", "Benin", 
+          "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Bulgaria", "Burkina Faso",
+          "Cambodia", "Cameroon", "Canada", "Chad", "Chile", "China", "Colombia", "Costa Rica",
+          "Croatia", "Czech Republic", "Denmark", "Dominican Republic", "Ecuador", "Egypt",
+          "El Salvador", "Estonia", "Ethiopia", "Finland", "France", "Gabon", "Georgia",
+          "Germany", "Ghana", "Greece", "Guatemala", "Guinea", "Honduras", "Hungary", "Iceland",
+          "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica",
+          "Japan", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyzstan", "Latvia", "Lebanon",
+          "Lithuania", "Luxembourg", "Madagascar", "Malaysia", "Mali", "Malta", "Mauritius",
+          "Mexico", "Moldova", "Mongolia", "Morocco", "Myanmar", "Nepal", "Netherlands",
+          "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman",
+          "Pakistan", "Panama", "Paraguay", "Peru", "Philippines", "Poland", "Portugal",
+          "Qatar", "Romania", "Russia", "Rwanda", "Saudi Arabia", "Senegal", "Serbia",
+          "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain",
+          "Sri Lanka", "Sweden", "Switzerland", "Tanzania", "Thailand", "Tunisia", "Turkey",
+          "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States",
+          "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+        ],
+        "name": "Select Country: "
+      }
+    }
+  ],
+
+  "transform": [
+    {
+      "fold": [
+        "Fertility Rate",
+        "Forested Area (%)",
+        "Gross primary education enrollment (%)",
+        "Gross tertiary education enrollment (%)",
+        "Infant mortality",
+        "Life expectancy",
+        "Out of pocket health expenditure",
+        "Population: Labor force participation (%)",
+        "Total tax rate",
+        "Unemployment rate"
+      ],
+      "as": ["metric", "value"]
+    },
+    {
+      "lookup": "metric",
+      "from": {
+        "data": {
+          "values": [
+            {"original": "Fertility Rate", "renamed": "Fertility Rate"},
+            {"original": "Forested Area (%)", "renamed": "Forest Coverage"},
+            {"original": "Gross primary education enrollment (%)", "renamed": "Primary Education Enrollment"},
+            {"original": "Gross tertiary education enrollment (%)", "renamed": "Higher Education Enrollment"},
+            {"original": "Infant mortality", "renamed": "Infnat Mortality"},
+            {"original": "Life expectancy", "renamed": "Life Expectancy"},
+            {"original": "Out of pocket health expenditure", "renamed": "Health Spending"},
+            {"original": "Population: Labor force participation (%)", "renamed": "Labor Force"},
+            {"original": "Total tax rate", "renamed": "Tax Rate"},
+            {"original": "Unemployment rate", "renamed": "Unemployment"}
+          ]
+        },
+        "key": "original",
+        "fields": ["renamed"]
+      }
+    },
+    {
+      "calculate": "toNumber(replace(datum.value, /[%,$]/g, ''))",
+      "as": "value_num"
+    },
+    {
+      "filter": "datum.value_num != null && !isNaN(datum.value_num)"
+    },
+    {
+      "joinaggregate": [
+        {"op": "min", "field": "value_num", "as": "min_val"},
+        {"op": "max", "field": "value_num", "as": "max_val"}
+      ],
+      "groupby": ["renamed"]
+    },
+    {
+      "calculate": "datum.max_val === datum.min_val ? 0.5 : (datum.value_num - datum.min_val) / (datum.max_val - datum.min_val)",
+      "as": "value_normalised"
+    },
+    {
+      "filter": "indexof(country_select, datum.Country) >= 0"
+    },
+    {
+      "calculate": "datum.renamed === 'Fertility Rate' ? 0 : datum.renamed === 'Forest Coverage' ? 1 : datum.renamed === 'Primary Education Enrollment' ? 2 : datum.renamed === 'Higher Education Enrollment' ? 3 : datum.renamed === 'Infnat Mortality' ? 4 : datum.renamed === 'Life Expectancy' ? 5 : datum.renamed === 'Health Spending' ? 6 : datum.renamed === 'Labor Force' ? 7 : datum.renamed === 'Tax Rate' ? 8 : 9",
+      "as": "metric_index"
+    },
+    {
+      "calculate": "datum.metric_index * 2 * PI / 10",
+      "as": "angle"
+    },
+    {
+      "calculate": "datum.value_normalised * 100",
+      "as": "radius"
+    },
+    {
+      "calculate": "cos(datum.angle - PI/2) * datum.radius",
+      "as": "x"
+    },
+    {
+      "calculate": "sin(datum.angle - PI/2) * datum.radius",
+      "as": "y"
+    },
+    {
+      "calculate": "cos(datum.angle - PI/2) * 130",
+      "as": "label_x"
+    },
+    {
+      "calculate": "sin(datum.angle - PI/2) * 130",
+      "as": "label_y"
+    }
+  ],
+
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {"radius": 20}, {"radius": 40}, {"radius": 60}, {"radius": 80}, {"radius": 100}
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "fill": "none",
+        "stroke": "#e0e0e0",
+        "strokeWidth": 1,
+        "opacity": 0.7
+      },
+      "encoding": {
+        "x": {"value": 250},
+        "y": {"value": 250},
+        "size": {"field": "radius", "type": "quantitative", "scale": {"range": [800, 110000]}, "legend": null}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"angle": 0}, {"angle": 1}, {"angle": 2}, {"angle": 3}, {"angle": 4}, 
+          {"angle": 5}, {"angle": 6}, {"angle": 7}, {"angle": 8}, {"angle": 9}
+        ]
+      },
+      "transform": [
+        {"calculate": "datum.angle * 2 * PI / 10", "as": "radians"},
+        {"calculate": "250 + cos(datum.radians - PI/2) * 200", "as": "x2"},
+        {"calculate": "250 + sin(datum.radians - PI/2) * 200", "as": "y2"}
+      ],
+      "mark": {
+        "type": "rule",
+        "stroke": "#e0e0e0",
+        "strokeWidth": 1,
+        "opacity": 0.5
+      },
+      "encoding": {
+        "x": {"value": 250},
+        "y": {"value": 250},
+        "x2": {"field": "x2", "type": "quantitative", "scale": {"domain": [-150, 150]}},
+        "y2": {"field": "y2", "type": "quantitative", "scale": {"domain": [-150, 150]}}
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "fillOpacity": 0.2,
+        "strokeWidth": 2,
+        "interpolate": "linear-closed"
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [-150, 150]}, "axis": null},
+        "y": {"field": "y", "type": "quantitative", "scale": {"domain": [-150, 150]}, "axis": null},
+        "order": {"field": "metric_index", "type": "ordinal"},
+        "color": {
+          "field": "Country",
+          "type": "nominal",
+          "scale": {"scheme": "category10"},
+          "legend": {"title": "Country", "orient": "right", "offset": 20}
+        },
+        "fill": {
+          "field": "Country",
+          "type": "nominal",
+          "scale": {"scheme": "category10"}
+        },
+        "stroke": {
+          "field": "Country",
+          "type": "nominal",
+          "scale": {"scheme": "category10"},
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "stroke": "white",
+        "strokeWidth": 2,
+        "size": 80
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [-150, 150]}, "axis": null},
+        "y": {"field": "y", "type": "quantitative", "scale": {"domain": [-150, 150]}, "axis": null},
+        "fill": {
+          "field": "Country",
+          "type": "nominal",
+          "scale": {"scheme": "category10"}
+        },
+        "tooltip": [
+          {"field": "Country", "title": "Country"},
+          {"field": "renamed", "title": "Metric"},
+          {"field": "value", "title": "Original Value"},
+          {"field": "value_normalised", "title": "Normalised", "format": ".3f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "fill": "#333"
+      },
+      "encoding": {
+        "x": {"field": "label_x", "type": "quantitative", "scale": {"domain": [-150, 150]}, "axis": null},
+        "y": {"field": "label_y", "type": "quantitative", "scale": {"domain": [-150, 150]}, "axis": null},
+        "text": {"field": "renamed", "type": "nominal"},
+        "align": {
+          "condition": [
+            {"test": "datum.label_x > 10", "value": "left"},
+            {"test": "datum.label_x < -10", "value": "right"}
+          ],
+          "value": "center"
+        },
+        "baseline": {
+          "condition": [
+            {"test": "datum.label_y > 10", "value": "bottom"},
+            {"test": "datum.label_y < -10", "value": "top"}
+          ],
+          "value": "middle"
+        }
+      }
+    }
+  ],
+
+  "resolve": {
+    "scale": {
+      "x": "independent",
+      "y": "independent"
+    }
+  }
+}
