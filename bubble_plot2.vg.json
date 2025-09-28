@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Inbound Tourism vs Unemployment Rate (2018, with GDP per Capita PPP)",
+  "width": 850,
+  "height": 550,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/data/tourism.csv",
+    "format": {"type": "csv"}
+  },
+
+  "transform": [
+    { "calculate": "toNumber(replace(datum['2018'], /,/g, ''))", "as": "InboundTourism" },
+
+    {
+      "lookup": "Country Name",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/data/world-data-2023.csv",
+          "format": {"type": "csv"}
+        },
+        "key": "Country",
+        "fields": ["Unemployment rate"]
+      },
+      "as": ["Unemp_raw"]
+    },
+    { "calculate": "toNumber(replace(datum.Unemp_raw, '%', ''))", "as": "UnemploymentRate" },
+
+    {
+      "lookup": "Country Name",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/data/gdp_per_capita_PPP.csv",
+          "format": {"type": "csv"}
+        },
+        "key": "Country Name",
+        "fields": ["2019"]
+      },
+      "as": ["GDP_PPP_raw"]
+    },
+    { "calculate": "toNumber(replace(datum.GDP_PPP_raw, /,/g, ''))", "as": "GDP_PPP" },
+
+    {
+      "lookup": "Country Name",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/data/Countries%20by%20continents.csv",
+          "format": {"type": "csv"}
+        },
+        "key": "Country",
+        "fields": ["Continent"]
+      },
+      "as": ["Continent_raw"]
+    },
+    { "calculate": "datum.Continent_raw ? datum.Continent_raw : 'Other'", "as": "Continent" },
+
+    {
+      "filter": "isFinite(datum.InboundTourism) && isFinite(datum.UnemploymentRate) && isFinite(datum.GDP_PPP)"
+    },
+
+    { "calculate": "format(datum.UnemploymentRate, '.1f') + '%'", "as": "Unemp_fmt" },
+    { "calculate": "format(datum.InboundTourism, '.2s')", "as": "Tourism_fmt" },
+    { "calculate": "'$' + format(datum.GDP_PPP, ',.0f')", "as": "GDP_fmt" }
+  ],
+
+  "selection": {
+    "continent_sel": {
+      "type": "multi",
+      "fields": ["Continent"],
+      "bind": "legend"
+    }
+  },
+
+  "mark": {
+    "type": "circle",
+    "opacity": 0.75,
+    "stroke": "black",
+    "strokeWidth": 0.3
+  },
+
+  "encoding": {
+    "x": {
+      "field": "UnemploymentRate",
+      "type": "quantitative",
+      "title": "Unemployment Rate (%)",
+      "axis": {"format": ".1f", "grid": true}
+    },
+    "y": {
+      "field": "InboundTourism",
+      "type": "quantitative",
+      "title": "Inbound Tourism (Arrivals, 2018, log scale)",
+      "axis": {"grid": true, "format": "s"},
+      "scale": {"type": "log"}
+    },
+    "size": {
+      "field": "GDP_PPP",
+      "type": "quantitative",
+      "scale": {"type": "sqrt", "range": [30, 1200]},
+      "title": "GDP per Capita (PPP, 2019)"
+    },
+    "color": {
+      "field": "Continent",
+      "type": "nominal",
+      "title": "Continent",
+      "scale": {"scheme": "tableau10"}
+    },
+    "opacity": {
+      "condition": {"selection": "continent_sel", "value": 0.85},
+      "value": 0.1
+    },
+    "tooltip": [
+      {"field": "Country Name", "title": "🌍 Country"},
+      {"field": "Continent", "title": "🌎 Continent"},
+      {"field": "Unemp_fmt", "type": "nominal", "title": "💼 Unemployment Rate"},
+      {"field": "Tourism_fmt", "type": "nominal", "title": "✈️ Inbound Tourism (2018)"},
+      {"field": "GDP_fmt", "type": "nominal", "title": "💰 GDP per Capita (PPP, 2019)"}
+    ]
+  }
+}

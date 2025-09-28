@@ -1,0 +1,144 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Happiness vs Government Expenditure (2023)",
+  "width": 800,
+  "height": 550,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/data/happiness_report.csv",
+    "format": {"type": "csv"}
+  },
+
+  "transform": [
+    { "calculate": "toNumber(datum['Happiness Score'])", "as": "Happiness_Score_num" },
+
+    {
+      "lookup": "Country",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/data/gov_expenditure_percentage.csv",
+          "format": {"type": "csv"}
+        },
+        "key": "Country",
+        "fields": ["2023"]
+      },
+      "as": ["gov2023_raw"]
+    },
+    { "calculate": "toNumber(datum.gov2023_raw)", "as": "gov2023" },
+
+    {
+      "lookup": "Country",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/data/world-data-2023.csv",
+          "format": {"type": "csv"}
+        },
+        "key": "Country",
+        "fields": [
+          "Population",
+          "Fertility Rate",
+          "Life expectancy",
+          "Out of pocket health expenditure",
+          "CPI"
+        ]
+      },
+      "as": [
+        "Population_raw",
+        "Fertility_raw",
+        "LifeExp_raw",
+        "HealthExp_raw",
+        "CPI_raw"
+      ]
+    },
+    { "calculate": "toNumber(replace(datum.Population_raw, /,/g, ''))", "as": "Population_num" },
+    { "calculate": "toNumber(datum.Fertility_raw)", "as": "Fertility Rate" },
+    { "calculate": "toNumber(datum.LifeExp_raw)", "as": "Life expectancy" },
+    { "calculate": "toNumber(replace(datum.HealthExp_raw, '%', ''))", "as": "Out of pocket health expenditure" },
+    { "calculate": "toNumber(datum.CPI_raw)", "as": "CPI" },
+
+    { "calculate": "format(datum.gov2023, '.1f') + '%'", "as": "gov2023_fmt" },
+    { "calculate": "format(datum['Out of pocket health expenditure'], '.1f') + '%'", "as": "HealthExp_fmt" },
+    { "calculate": "format(datum['Life expectancy'], '.1f') + ' years'", "as": "LifeExp_fmt" },
+    { "calculate": "format(datum.Population_num, '.2s') + ' people'", "as": "Pop_fmt" },
+
+    {
+      "lookup": "Country",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/data/Countries%20by%20continents.csv",
+          "format": {"type": "csv"}
+        },
+        "key": "Country",
+        "fields": ["Continent"]
+      }
+    },
+
+    {
+      "calculate": "((datum['Life expectancy'] - 50) / (90 - 50)) * 700",
+      "as": "LifeExp_normalized"
+    }
+  ],
+
+  "selection": {
+    "continent_sel": {
+      "type": "multi",
+      "fields": ["Continent"],
+      "bind": "legend"
+    }
+  },
+
+  "mark": {
+    "type": "circle",
+    "opacity": 0.65,
+    "stroke": "black",
+    "strokeWidth": 0.3
+  },
+
+  "encoding": {
+    "x": {
+      "field": "gov2023",
+      "type": "quantitative",
+      "title": "Government Expenditure (% of GDP, 2023)",
+      "axis": {"grid": true, "format": ".1f"}
+    },
+    "y": {
+      "field": "Happiness_Score_num",
+      "type": "quantitative",
+      "title": "Happiness Score",
+      "axis": {"grid": true, "format": ".2f"}
+    },
+    "size": {
+      "field": "LifeExp_normalized",
+      "type": "quantitative",
+      "scale": {"range": [5, 1000]},
+      "title": "⏳ Life Expectancy (years)",
+      "legend": {
+        "title": "⏳ Life Expectancy (years)",
+        "values": [0, 175, 350, 525, 700],
+        "labelExpr": "datum.value == 0 ? '50' : datum.value == 175 ? '60' : datum.value == 350 ? '70' : datum.value == 525 ? '80' : datum.value == 700 ? '90' : datum.value"
+      }
+    },
+    "color": {
+      "field": "Continent",
+      "type": "nominal",
+      "title": "Continent",
+      "scale": {"scheme": "tableau10"}
+    },
+    "opacity": {
+      "condition": {"selection": "continent_sel", "value": 0.8},
+      "value": 0.1
+    },
+    "tooltip": [
+      {"field": "Country", "type": "nominal", "title": "🌍 Country"},
+      {"field": "Continent", "type": "nominal", "title": "🌎 Continent"},
+      {"field": "Happiness Rank", "type": "ordinal", "title": "😀 Happiness Rank", "format": ".0f"},
+      {"field": "Happiness_Score_num", "type": "quantitative", "title": "😀 Happiness Score", "format": ".2f"},
+      {"field": "gov2023_fmt", "type": "nominal", "title": "💰 Gov Expenditure"},
+      {"field": "HealthExp_fmt", "type": "nominal", "title": "🏥 Health Expenditure"},
+      {"field": "LifeExp_fmt", "type": "nominal", "title": "⏳ Life Expectancy"},
+      {"field": "Fertility Rate", "type": "quantitative", "title": "👶 Fertility Rate", "format": ".2f"},
+      {"field": "Pop_fmt", "type": "nominal", "title": "👥 Population"},
+      {"field": "CPI", "type": "quantitative", "title": "📊 CPI", "format": ".1f"}
+    ]
+  }
+}
