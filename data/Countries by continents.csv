@@ -146,6 +146,8 @@ Europe,Switzerland
 Europe,Ukraine
 Europe,United Kingdom
 Europe,Vatican City
+Eurppe,Greenland
+Europe,Faroe Islands
 North America,Antigua and Barbuda
 North America,Bahamas
 North America,Barbados
@@ -169,6 +171,8 @@ North America,Saint Lucia
 North America,Saint Vincent and the Grenadines
 North America,Trinidad and Tobago
 North America,United States
+North America,Bermuda
+North America,Cayman Islands
 Oceania,Australia
 Oceania,Fiji
 Oceania,Kiribati
@@ -194,7 +198,13 @@ South America,Paraguay
 South America,Peru
 South America,Suriname
 South America,Uruguay
-
 South America,Venezuela
+South America,Puerto Rico
+South America,Aruba
+South America,Curacao
+
+
+
+
 
 
