@@ -17,6 +17,7 @@
       "name": "continent_select",
       "bind": {
         "input": "select",
+        "name": "Select Region",
         "options": [
           "All",
           "Asia",
