@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "Top 25 Countries - PPP-Adjusted GDP per Capita (2023)"},
+  "title": {"text": "PPP-Adjusted GDP per Capita (2023)"},
   "width": {"step": 25},
   "height": 420,
 
