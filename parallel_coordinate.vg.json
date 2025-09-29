@@ -119,7 +119,7 @@
     "color": {
       "field": "Country",
       "type": "nominal",
-      "legend": {"title": "Country", "columns": 3},
+      "legend": null,   // 🔹 hides the legend completely
       "scale": {"scheme": "category20"}
     },
     "opacity": {
