@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "Social Statistics Radar Chart - Multi-Country Comparison"},
+  "title": {"text": "Social Statistics by Individual Country"},
   "width": 500,
   "height": 500,
 
@@ -11,7 +11,7 @@
   "params": [
     {
       "name": "country_select",
-      "value": ["Australia", "United States", "India"],
+      "value": ["Australia", "United States", "India", "Sweden"],
       "bind": {
         "input": "select",
         "multiple": true,
