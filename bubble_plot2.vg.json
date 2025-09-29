@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Inbound Tourism vs Unemployment Rate (2018, with GDP per Capita PPP)",
+  "title": "Inbound Tourism (2018) vs Unemployment Rate (2023) (with 2019 GDP per Capita PPP)",
   "width": 850,
   "height": 550,
 
@@ -101,7 +101,7 @@
     "color": {
       "field": "Continent",
       "type": "nominal",
-      "title": "Continent",
+      "title": "Continent (Click to Select)",
       "scale": {"scheme": "tableau10"}
     },
     "opacity": {
