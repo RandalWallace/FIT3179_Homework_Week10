@@ -58,19 +58,19 @@
     "color": {
       "field": "Continent",
       "type": "nominal",
-      "legend": {"title": "Continent"},
+      "legend": {"title": "Continent (Click to Select)"},
       "scale": {"scheme": "category10"}
     },
     "tooltip": [
-      {"field": "Country Name", "type": "nominal", "title": "Country"},
-      {"field": "Continent", "type": "nominal", "title": "Continent"},
+      {"field": "Country Name", "type": "nominal", "title": "🏳️ Country"},
+      {"field": "Continent", "type": "nominal", "title": "🌍 Continent"},
       {
         "field": "gdp_value",
         "type": "quantitative",
-        "title": "GDP per Capita (PPP)",
+        "title": "💰 GDP per Capita (PPP)",
         "format": ",.0f"
       },
-      {"field": "rank", "type": "quantitative", "title": "Rank"}
+      {"field": "rank", "type": "quantitative", "title": "🏅 Rank"}
     ]
   }
 }
