@@ -1,0 +1,103 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Top Immigrant Source Countries to Australia (Bump Chart)",
+    "fontSize": 20
+  },
+  "width": 800,
+  "height": 500,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/data/immigrants-to-australia-where-did-they-move-from.csv",
+    "format": {"type": "csv"}
+  },
+
+  "params": [
+    {
+      "name": "continent_select",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Asia",
+          "Europe",
+          "Africa",
+          "North America",
+          "South America",
+          "Oceania"
+        ]
+      },
+      "value": "All"
+    }
+  ],
+
+  "transform": [
+    {"filter": "isValid(datum['Immigrants to Australia: Where did they move from?'])"},
+    {
+      "calculate": "toNumber(datum['Immigrants to Australia: Where did they move from?'])",
+      "as": "Count"
+    },
+    {
+      "lookup": "Entity",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/data/Countries%20by%20continents.csv",
+          "format": {"type": "csv"}
+        },
+        "key": "Country",
+        "fields": ["Continent"]
+      }
+    },
+    {"filter": "continent_select == 'All' || datum.Continent == continent_select"},
+    {
+      "window": [{"op": "rank", "as": "Rank"}],
+      "sort": [{"field": "Count", "order": "descending"}],
+      "groupby": ["Year"]
+    },
+    {"filter": "datum.Rank <= 10"}
+  ],
+
+  "mark": {
+    "type": "line",
+    "point": {"size": 100},
+    "strokeWidth": 4
+  },
+
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "temporal",
+      "timeUnit": "year",
+      "axis": {
+        "title": "Year",
+        "format": "%Y",
+        "titleFontSize": 16,
+        "labelFontSize": 14
+      }
+    },
+    "y": {
+      "field": "Rank",
+      "type": "ordinal",
+      "sort": "ascending",
+      "axis": {
+        "title": "Rank",
+        "orient": "left",
+        "titleFontSize": 16,
+        "labelFontSize": 14
+      }
+    },
+    "color": {
+      "field": "Entity",
+      "type": "nominal",
+      "scale": {"scheme": "tableau20"},
+      "legend": {"title": "Country"}
+    },
+    "tooltip": [
+      {"field": "Entity", "type": "nominal", "title": "Country"},
+      {"field": "Year", "type": "temporal", "timeUnit": "year", "title": "Year"},
+      {"field": "Count", "type": "quantitative", "title": "Migrants"},
+      {"field": "Rank", "type": "ordinal", "title": "Rank"},
+      {"field": "Continent", "type": "nominal", "title": "Continent"}
+    ]
+  }
+}
