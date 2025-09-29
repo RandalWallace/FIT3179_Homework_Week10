@@ -8,7 +8,39 @@
     "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/data/world-data-2023.csv"
   },
 
+  "params": [
+    {
+      "name": "region_filter",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Asia",
+          "Europe",
+          "Africa",
+          "North America",
+          "South America",
+          "Oceania"
+        ],
+        "name": "Select Region: "
+      },
+      "value": "All"
+    }
+  ],
+
   "transform": [
+    {
+      "lookup": "Country",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/data/Countries%20by%20continents.csv",
+          "format": {"type": "csv"}
+        },
+        "key": "Country",
+        "fields": ["Continent"]
+      }
+    },
+    {"filter": "region_filter == 'All' || datum.Continent == region_filter"},
     {
       "fold": [
         "Fertility Rate",
@@ -49,9 +81,7 @@
       "calculate": "toNumber(replace(datum.value, /[%,$]/g, ''))",
       "as": "value_num"
     },
-    {
-      "filter": "datum.value_num != null && !isNaN(datum.value_num)"
-    },
+    {"filter": "datum.value_num != null && !isNaN(datum.value_num)"},
     {
       "joinaggregate": [
         {"op": "min", "field": "value_num", "as": "min_val"},
@@ -76,11 +106,7 @@
     "x": {
       "field": "renamed",
       "type": "ordinal",
-      "axis": {
-        "labelAngle": -45,
-        "title": null,
-        "labelLimit": 120
-      },
+      "axis": {"labelAngle": -45, "title": null, "labelLimit": 120},
       "scale": {"padding": 0.1}
     },
     "y": {
@@ -104,7 +130,8 @@
       {"field": "Country", "title": "Country"},
       {"field": "renamed", "title": "Metric"},
       {"field": "value", "title": "Original Value"},
-      {"field": "value_normalised", "title": "Normalised", "format": ".3f"}
+      {"field": "value_normalised", "title": "Normalised", "format": ".3f"},
+      {"field": "Continent", "title": "Continent"}
     ]
   },
 
