@@ -113,7 +113,7 @@
       "scale": {"range": [5, 1000]},
       "title": "⏳ Life Expectancy (years)",
       "legend": {
-        "title": "⏳ Life Expectancy (years)",
+        "title": "Life Expectancy (years)",
         "values": [0, 175, 350, 525, 700],
         "labelExpr": "datum.value == 0 ? '50' : datum.value == 175 ? '60' : datum.value == 350 ? '70' : datum.value == 525 ? '80' : datum.value == 700 ? '90' : datum.value"
       }
@@ -121,7 +121,7 @@
     "color": {
       "field": "Continent",
       "type": "nominal",
-      "title": "Continent",
+      "title": "Continent (Click to Select)",
       "scale": {"scheme": "tableau10"}
     },
     "opacity": {
