@@ -3,7 +3,7 @@
   "width": 800,
   "height": 450,
   "title": {
-    "text": "Global Minimum Wage (USD) with Happiness Scores",
+    "text": "Global Minimum Wage (PPP-Adjusted, USD) with Happiness Scores (2023)",
     "fontSize": 16,
     "fontWeight": "bold"
   },
