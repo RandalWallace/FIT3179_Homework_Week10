@@ -79,22 +79,6 @@ Aruba,2010,60
 Aruba,2015,68
 Aruba,2020,72
 Aruba,2024,70
-Asia,1990,828407
-Asia,1995,1042659
-Asia,2000,1208804
-Asia,2005,1532842
-Asia,2010,2206649
-Asia,2015,2851936
-Asia,2020,3694544
-Asia,2024,4234839
-Australia,1990,Selected country
-Australia,1995,Selected country
-Australia,2000,Selected country
-Australia,2005,Selected country
-Australia,2010,Selected country
-Australia,2015,Selected country
-Australia,2020,Selected country
-Australia,2024,Selected country
 Austria,1990,24364
 Austria,1995,22990
 Austria,2000,21615
@@ -295,30 +279,6 @@ Central African Republic,2010,20
 Central African Republic,2015,33
 Central African Republic,2020,141
 Central African Republic,2024,191
-Central America (UN),1990,13160
-Central America (UN),1995,13635
-Central America (UN),2000,13770
-Central America (UN),2005,14551
-Central America (UN),2010,16522
-Central America (UN),2015,19324
-Central America (UN),2020,21837
-Central America (UN),2024,23537
-Central Asia (UN),1990,324
-Central Asia (UN),1995,515
-Central Asia (UN),2000,1053
-Central Asia (UN),2005,1812
-Central Asia (UN),2010,3043
-Central Asia (UN),2015,4501
-Central Asia (UN),2020,5711
-Central Asia (UN),2024,6563
-Central and Southern Asia (UN),1990,125618
-Central and Southern Asia (UN),1995,168075
-Central and Southern Asia (UN),2000,206204
-Central and Southern Asia (UN),2005,304370
-Central and Southern Asia (UN),2010,582440
-Central and Southern Asia (UN),2015,846385
-Central and Southern Asia (UN),2020,1285560
-Central and Southern Asia (UN),2024,1625572
 Chad,1990,7
 Chad,1995,10
 Chad,2000,40
@@ -463,38 +423,6 @@ East Timor,2010,10587
 East Timor,2015,9992
 East Timor,2020,10247
 East Timor,2024,11546
-Eastern Africa (UN),1990,40158
-Eastern Africa (UN),1995,49853
-Eastern Africa (UN),2000,58247
-Eastern Africa (UN),2005,79841
-Eastern Africa (UN),2010,115411
-Eastern Africa (UN),2015,147784
-Eastern Africa (UN),2020,166095
-Eastern Africa (UN),2024,178554
-Eastern Asia (UN),1990,191121
-Eastern Asia (UN),1995,256012
-Eastern Asia (UN),2000,306687
-Eastern Asia (UN),2005,419973
-Eastern Asia (UN),2010,613998
-Eastern Asia (UN),2015,815704
-Eastern Asia (UN),2020,960769
-Eastern Asia (UN),2024,1015329
-Eastern Europe (UN),1990,165823
-Eastern Europe (UN),1995,170300
-Eastern Europe (UN),2000,165457
-Eastern Europe (UN),2005,163920
-Eastern Europe (UN),2010,161525
-Eastern Europe (UN),2015,162703
-Eastern Europe (UN),2020,158662
-Eastern Europe (UN),2024,153834
-Eastern and South-Eastern Asia (UN),1990,576363
-Eastern and South-Eastern Asia (UN),1995,728360
-Eastern and South-Eastern Asia (UN),2000,833093
-Eastern and South-Eastern Asia (UN),2005,1030660
-Eastern and South-Eastern Asia (UN),2010,1386632
-Eastern and South-Eastern Asia (UN),2015,1730066
-Eastern and South-Eastern Asia (UN),2020,2070887
-Eastern and South-Eastern Asia (UN),2024,2247130
 Ecuador,1990,1183
 Ecuador,1995,1343
 Ecuador,2000,1457
@@ -551,30 +479,6 @@ Ethiopia,2010,8939
 Ethiopia,2015,13123
 Ethiopia,2020,15644
 Ethiopia,2024,17141
-Europe,1990,2346845
-Europe,1995,2389319
-Europe,2000,2338369
-Europe,2005,2329650
-Europe,2010,2389160
-Europe,2015,2395303
-Europe,2020,2280277
-Europe,2024,2128117
-Europe and Northern America (UN),1990,2395310
-Europe and Northern America (UN),1995,2448354
-Europe and Northern America (UN),2000,2405903
-Europe and Northern America (UN),2005,2414712
-Europe and Northern America (UN),2010,2498432
-Europe and Northern America (UN),2015,2532831
-Europe and Northern America (UN),2020,2431532
-Europe and Northern America (UN),2024,2283505
-European Union (27),1990,1050747
-European Union (27),1995,1059909
-European Union (27),2000,1018799
-European Union (27),2005,1019323
-European Union (27),2010,1011845
-European Union (27),2015,996554
-European Union (27),2020,917823
-European Union (27),2024,834818
 Falkland Islands,1990,114
 Falkland Islands,1995,115
 Falkland Islands,2000,130
@@ -719,14 +623,6 @@ Haiti,2010,102
 Haiti,2015,120
 Haiti,2020,128
 Haiti,2024,130
-High-income countries,1990,2734102
-High-income countries,1995,2868211
-High-income countries,2000,2896165
-High-income countries,2005,3011940
-High-income countries,2010,3275256
-High-income countries,2015,3444828
-High-income countries,2020,3390119
-High-income countries,2024,3286709
 Honduras,1990,141
 Honduras,1995,162
 Honduras,2000,185
@@ -887,14 +783,6 @@ Kyrgyzstan,2010,362
 Kyrgyzstan,2015,492
 Kyrgyzstan,2020,638
 Kyrgyzstan,2024,731
-Land-locked Developing Countries (LLDC),1990,79613
-Land-locked Developing Countries (LLDC),1995,88485
-Land-locked Developing Countries (LLDC),2000,100957
-Land-locked Developing Countries (LLDC),2005,127143
-Land-locked Developing Countries (LLDC),2010,187045
-Land-locked Developing Countries (LLDC),2015,256652
-Land-locked Developing Countries (LLDC),2020,372976
-Land-locked Developing Countries (LLDC),2024,484466
 Laos,1990,11064
 Laos,1995,11088
 Laos,2000,10449
@@ -903,14 +791,6 @@ Laos,2010,11136
 Laos,2015,11020
 Laos,2020,11680
 Laos,2024,11771
-Latin America and the Caribbean (UN),1990,76769
-Latin America and the Caribbean (UN),1995,82494
-Latin America and the Caribbean (UN),2000,85672
-Latin America and the Caribbean (UN),2005,95273
-Latin America and the Caribbean (UN),2010,120090
-Latin America and the Caribbean (UN),2015,151410
-Latin America and the Caribbean (UN),2020,209560
-Latin America and the Caribbean (UN),2024,259306
 Latvia,1990,11447
 Latvia,1995,9579
 Latvia,2000,7357
@@ -959,22 +839,6 @@ Lithuania,2010,3090
 Lithuania,2015,3374
 Lithuania,2020,3339
 Lithuania,2024,3094
-Low-income countries,1990,16988
-Low-income countries,1995,23487
-Low-income countries,2000,37273
-Low-income countries,2005,65952
-Low-income countries,2010,100743
-Low-income countries,2015,140318
-Low-income countries,2020,180753
-Low-income countries,2024,210452
-Lower-middle-income countries,1990,497182
-Lower-middle-income countries,1995,613981
-Lower-middle-income countries,2000,683134
-Lower-middle-income countries,2005,842489
-Lower-middle-income countries,2010,1228044
-Lower-middle-income countries,2015,1580790
-Lower-middle-income countries,2020,2138898
-Lower-middle-income countries,2024,2556418
 Luxembourg,1990,103
 Luxembourg,1995,123
 Luxembourg,2000,150
@@ -1071,14 +935,6 @@ Micronesia,2010,1325
 Micronesia,2015,1453
 Micronesia,2020,1763
 Micronesia,2024,2508
-Middle Africa (UN),1990,572
-Middle Africa (UN),1995,731
-Middle Africa (UN),2000,989
-Middle Africa (UN),2005,1695
-Middle Africa (UN),2010,4348
-Middle Africa (UN),2015,7082
-Middle Africa (UN),2020,10655
-Middle Africa (UN),2024,12328
 Moldova,1990,285
 Moldova,1995,387
 Moldova,2000,576
@@ -1207,14 +1063,6 @@ Niue,2010,768
 Niue,2015,945
 Niue,2020,980
 Niue,2024,975
-North America,1990,89210
-North America,1995,99895
-North America,2000,108379
-North America,2005,126780
-North America,2010,152349
-North America,2015,182992
-North America,2020,197788
-North America,2024,201896
 North Macedonia,1990,49301
 North Macedonia,1995,49600
 North Macedonia,2000,49652
@@ -1223,38 +1071,6 @@ North Macedonia,2010,51425
 North Macedonia,2015,49963
 North Macedonia,2020,51159
 North Macedonia,2024,48723
-Northern Africa (UN),1990,42052
-Northern Africa (UN),1995,44495
-Northern Africa (UN),2000,46260
-Northern Africa (UN),2005,61688
-Northern Africa (UN),2010,72562
-Northern Africa (UN),2015,71639
-Northern Africa (UN),2020,73796
-Northern Africa (UN),2024,72606
-Northern Africa and Western Asia (UN),1990,192535
-Northern Africa and Western Asia (UN),1995,214086
-Northern Africa and Western Asia (UN),2000,238598
-Northern Africa and Western Asia (UN),2005,281957
-Northern Africa and Western Asia (UN),2010,331494
-Northern Africa and Western Asia (UN),2015,367201
-Northern Africa and Western Asia (UN),2020,430318
-Northern Africa and Western Asia (UN),2024,451353
-Northern America (UN),1990,72522
-Northern America (UN),1995,82402
-Northern America (UN),2000,90365
-Northern America (UN),2005,107519
-Northern America (UN),2010,130627
-Northern America (UN),2015,157605
-Northern America (UN),2020,169680
-Northern America (UN),2024,171998
-Northern Europe (UN),1990,1218536
-Northern Europe (UN),1995,1253732
-Northern Europe (UN),2000,1227180
-Northern Europe (UN),2005,1220016
-Northern Europe (UN),2010,1304632
-Northern Europe (UN),2015,1345239
-Northern Europe (UN),2020,1305200
-Northern Europe (UN),2024,1240520
 Norway,1990,2299
 Norway,1995,2647
 Norway,2000,3985
@@ -1503,14 +1319,6 @@ Slovenia,2010,8382
 Slovenia,2015,8068
 Slovenia,2020,6627
 Slovenia,2024,5483
-Small Island Developing States (SIDS),1990,129562
-Small Island Developing States (SIDS),1995,147803
-Small Island Developing States (SIDS),2000,167157
-Small Island Developing States (SIDS),2005,202170
-Small Island Developing States (SIDS),2010,239882
-Small Island Developing States (SIDS),2015,271910
-Small Island Developing States (SIDS),2020,294888
-Small Island Developing States (SIDS),2024,327414
 Solomon Islands,1990,1067
 Solomon Islands,1995,1255
 Solomon Islands,2000,1395
@@ -1559,38 +1367,6 @@ South Sudan,2010,648
 South Sudan,2015,7511
 South Sudan,2020,9004
 South Sudan,2024,9693
-South-Eastern Asia (UN),1990,385242
-South-Eastern Asia (UN),1995,472348
-South-Eastern Asia (UN),2000,526406
-South-Eastern Asia (UN),2005,610687
-South-Eastern Asia (UN),2010,772634
-South-Eastern Asia (UN),2015,914362
-South-Eastern Asia (UN),2020,1110118
-South-Eastern Asia (UN),2024,1231801
-Southern Africa (UN),1990,46649
-Southern Africa (UN),1995,59720
-Southern Africa (UN),2000,82026
-Southern Africa (UN),2005,116107
-Southern Africa (UN),2010,158869
-Southern Africa (UN),2015,180780
-Southern Africa (UN),2020,203800
-Southern Africa (UN),2024,217589
-Southern Asia (UN),1990,125294
-Southern Asia (UN),1995,167560
-Southern Asia (UN),2000,205151
-Southern Asia (UN),2005,302558
-Southern Asia (UN),2010,579397
-Southern Asia (UN),2015,841884
-Southern Asia (UN),2020,1279849
-Southern Asia (UN),2024,1619009
-Southern Europe (UN),1990,676002
-Southern Europe (UN),1995,670240
-Southern Europe (UN),2000,653893
-Southern Europe (UN),2005,647176
-Southern Europe (UN),2010,617669
-Southern Europe (UN),2015,591529
-Southern Europe (UN),2020,537895
-Southern Europe (UN),2024,478311
 Spain,1990,14752
 Spain,1995,14782
 Spain,2000,14182
@@ -1607,14 +1383,6 @@ Sri Lanka,2010,96257
 Sri Lanka,2015,119760
 Sri Lanka,2020,140771
 Sri Lanka,2024,156876
-Sub-Saharan Africa (UN),1990,89771
-Sub-Saharan Africa (UN),1995,113733
-Sub-Saharan Africa (UN),2000,146053
-Sub-Saharan Africa (UN),2005,206582
-Sub-Saharan Africa (UN),2010,295636
-Sub-Saharan Africa (UN),2015,360180
-Sub-Saharan Africa (UN),2020,412389
-Sub-Saharan Africa (UN),2024,447246
 Sudan,1990,1375
 Sudan,1995,2214
 Sudan,2000,4204
@@ -1791,14 +1559,6 @@ United States,2010,85523
 United States,2015,104434
 United States,2020,112841
 United States,2024,114202
-Upper-middle-income countries,1990,548863
-Upper-middle-income countries,1995,641752
-Upper-middle-income countries,2000,763955
-Upper-middle-income countries,2005,950013
-Upper-middle-income countries,2010,1262339
-Upper-middle-income countries,2015,1550699
-Upper-middle-income countries,2020,1884172
-Upper-middle-income countries,2024,2047235
 Uruguay,1990,11124
 Uruguay,1995,11053
 Uruguay,2000,10563
@@ -1839,38 +1599,6 @@ Vietnam,2010,203426
 Vietnam,2015,235732
 Vietnam,2020,273771
 Vietnam,2024,294435
-Western Africa (UN),1990,2392
-Western Africa (UN),1995,3429
-Western Africa (UN),2000,4791
-Western Africa (UN),2005,8939
-Western Africa (UN),2010,17008
-Western Africa (UN),2015,24534
-Western Africa (UN),2020,31839
-Western Africa (UN),2024,38775
-Western Asia (UN),1990,150483
-Western Asia (UN),1995,169591
-Western Asia (UN),2000,192338
-Western Asia (UN),2005,220269
-Western Asia (UN),2010,258932
-Western Asia (UN),2015,295562
-Western Asia (UN),2020,356522
-Western Asia (UN),2024,378747
-Western Europe (UN),1990,262427
-Western Europe (UN),1995,271680
-Western Europe (UN),2000,269008
-Western Europe (UN),2005,276081
-Western Europe (UN),2010,283979
-Western Europe (UN),2015,275755
-Western Europe (UN),2020,260095
-Western Europe (UN),2024,238842
-World,1990,3799949
-World,1995,4151020
-World,2000,4386094
-World,2005,4877126
-World,2010,5874707
-World,2015,6726639
-World,2020,7603826
-World,2024,8110501
 Yemen,1990,203
 Yemen,1995,263
 Yemen,2000,390
