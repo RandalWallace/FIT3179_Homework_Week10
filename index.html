@@ -15,33 +15,101 @@
     <h1>
         Quality of Life around the World
     </h1>
-    <div id="map">
-    </div>
+  <!-- Introduction -->
+  <section class="intro">
+    <h2>Introduction</h2>
+    <p>
+      This dashboard explores global patterns of quality of life, using a mix of
+      geographic, economic, and social indicators. Starting with a worldwide view,
+      it gradually narrows to regional, national, and societal drivers such as
+      government expenditure, migration, and tourism.
+    </p>
+  </section>
 
-    <div id ="parallel_coordinate">
-    </div>
+  <!-- Map -->
+  <section class="chart-section">
+    <h2>Global Overview</h2>
+    <div id="map" class="chart full-width"></div>
+    <p class="chart-text">
+      The map highlights worldwide differences in quality of life, providing the
+      foundation for deeper analysis.
+    </p>
+  </section>
 
-    <div id="bar_chart">
+  <!-- Parallel Coordinate + Radar -->
+  <section class="chart-row stacked-left">
+    <div class="chart-column">
+      <div id="parallel_coordinate" class="chart"></div>
+      <div id="radar_chart" class="chart"></div>
     </div>
-
-    <div id="bubble_chart1">
+    <div class="chart-text">
+      <h2>Comparative Metrics</h2>
+      <p>
+        These two charts complement each other: the parallel coordinate reveals
+        broad multi-variable relationships across countries, while the radar chart
+        illustrates detailed profiles for selected cases.
+      </p>
     </div>
+  </section>
 
-    <div id="bubble_chart2">
+  <!-- Bar chart -->
+  <section class="chart-row alt-layout">
+    <div class="chart-text">
+      <h2>Socioeconomic Breakdown</h2>
+      <p>
+        The bar chart breaks down socioeconomic factors, showing which elements
+        contribute most strongly to differences in quality of life across regions.
+      </p>
     </div>
+    <div id="bar_chart" class="chart"></div>
+  </section>
 
-    <div id="radar_chart">
+  <!-- Bubble + Bump -->
+  <section class="chart-column">
+    <div id="bubble_chart1" class="chart center-chart"></div>
+    <div class="chart-text">
+      <h2>Government Expenditure & Immigration</h2>
+      <p>
+        The bubble chart shows how government spending relates to immigration,
+        suggesting that stronger welfare states attract more newcomers.
+      </p>
     </div>
-
-    <div id="bump_chart">
+    <div id="bump_chart" class="chart center-chart"></div>
+    <div class="chart-text">
+      <h2>Migration Trends Over Time</h2>
+      <p>
+        The bump chart illustrates changes in immigration flows, providing a
+        dynamic view of how migration patterns evolve.
+      </p>
     </div>
-    <footer>
-        <p>
-            2025 Randal Wallace
-            FIT3179
-        </p>
-    </footer>
+  </section>
 
+  <!-- Bubble2 (centered with text above) -->
+  <section class="chart-section center-chart-section">
+    <div class="chart-text">
+      <h2>Tourism and Well-being</h2>
+      <p>
+        Tourism provides another lens on quality of life. Cultural richness,
+        environment, and openness all shape both perceptions and lived experiences
+        of well-being.
+      </p>
+    </div>
+    <div id="bubble_chart2" class="chart center-chart"></div>
+  </section>
+
+  <!-- Conclusion -->
+  <section class="conclusion">
+    <h2>Conclusion</h2>
+    <p>
+      This dashboard demonstrates how quality of life is influenced by a complex
+      mix of economic, social, and cultural factors. From global patterns on the
+      map to the dynamics of migration and tourism, the evidence highlights the
+      interconnected nature of well-being in today’s world.
+    </p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Randal Wallace | FIT3179 Assignment 2</p>
+  </footer>
 </body>
 </html>
-
