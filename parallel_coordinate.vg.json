@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "Various Social Statistics across Countries"},
+  "title": {"text": "Various Social Statistics across Countries (2023)"},
   "width": 700,
   "height": 420,
 
