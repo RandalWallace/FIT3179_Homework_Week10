@@ -8,7 +8,7 @@
   --color-accent: #0066cc;
   --bg-color: #fafafa;
   --max-width: 1400px;
-  --section-spacing: 60px;
+  --section-spacing: 30px;
 }
 
 /* ===== Base ===== */
@@ -19,7 +19,7 @@ body {
   background: var(--bg-color);
   line-height: 1.6;
   overflow-x: hidden;
-  padding-bottom: 140px; /* avoids footer overlap */
+  padding-bottom: 120px; /* avoids footer overlap */
   position: relative;
 }
 
