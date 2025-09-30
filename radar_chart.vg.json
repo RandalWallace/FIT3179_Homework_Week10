@@ -99,7 +99,7 @@
       "filter": "indexof(country_select, datum.Country) >= 0"
     },
     {
-      "calculate": "datum.renamed === 'Fertility Rate' ? 0 : datum.renamed === 'Forest Coverage' ? 1 : datum.renamed === 'Primary Education Enrollment' ? 2 : datum.renamed === 'Higher Education Enrollment' ? 3 : datum.renamed === 'Infnat Mortality' ? 4 : datum.renamed === 'Life Expectancy' ? 5 : datum.renamed === 'Health Spending' ? 6 : datum.renamed === 'Labor Force' ? 7 : datum.renamed === 'Tax Rate' ? 8 : 9",
+      "calculate": "datum.renamed === 'Fertility Rate' ? 0 : datum.renamed === 'Forest Coverage' ? 1 : datum.renamed === 'Primary Education Enrollment' ? 2 : datum.renamed === 'Higher Education Enrollment' ? 3 : datum.renamed === 'Infant Mortality' ? 4 : datum.renamed === 'Life Expectancy' ? 5 : datum.renamed === 'Health Spending' ? 6 : datum.renamed === 'Labor Force' ? 7 : datum.renamed === 'Tax Rate' ? 8 : 9",
       "as": "metric_index"
     },
     {
