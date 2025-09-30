@@ -65,7 +65,7 @@
             {"original": "Forested Area (%)", "renamed": "Forest Coverage"},
             {"original": "Gross primary education enrollment (%)", "renamed": "Primary Education Enrollment"},
             {"original": "Gross tertiary education enrollment (%)", "renamed": "Higher Education Enrollment"},
-            {"original": "Infant mortality", "renamed": "Infnat Mortality"},
+            {"original": "Infant mortality", "renamed": "Infant Mortality"},
             {"original": "Life expectancy", "renamed": "Life Expectancy"},
             {"original": "Out of pocket health expenditure", "renamed": "Health Spending"},
             {"original": "Population: Labor force participation (%)", "renamed": "Labor Force"},
