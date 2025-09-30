@@ -82,7 +82,7 @@
     "x": {
       "field": "UnemploymentRate",
       "type": "quantitative",
-      "title": "Unemployment Rate (%)",
+      "title": "Unemployment Rate (%) (2023)",
       "axis": {"format": ".1f", "grid": true}
     },
     "y": {
@@ -111,7 +111,7 @@
     "tooltip": [
       {"field": "Country Name", "title": "🌍 Country"},
       {"field": "Continent", "title": "🌎 Continent"},
-      {"field": "Unemp_fmt", "type": "nominal", "title": "💼 Unemployment Rate"},
+      {"field": "Unemp_fmt", "type": "nominal", "title": "💼 Unemployment Rate (2023)"},
       {"field": "Tourism_fmt", "type": "nominal", "title": "✈️ Inbound Tourism (2018)"},
       {"field": "GDP_fmt", "type": "nominal", "title": "💰 GDP per Capita (PPP, 2019)"}
     ]
