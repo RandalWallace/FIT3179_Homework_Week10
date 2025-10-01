@@ -2,7 +2,10 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {"text": "PPP-Adjusted GDP per Capita (2023)"},
   "width": "container",
-  "autosize": {"type": "fit", "contains": "padding"}
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  }
   "data": {
     "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/data/gdp_per_capita_PPP.csv"
   },
