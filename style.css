@@ -178,9 +178,9 @@ footer p {
   letter-spacing: 0.5px;
 }
 
-/* ===== Bar Chart Sizing ===== */
 #bar_chart {
-  flex: 1 1 500px;   /* default width ~500px, can shrink or grow */
-  max-width: 700px;  /* never go wider than 700px */
+  flex: 1 1 500px;     /* responsive, starts around 500px */
+  max-width: 700px;    /* never exceed 700px */
+  min-width: 400px;    /* prevent it from shrinking too much */
+  margin: 0 auto;      /* center inside its flex column */
 }
-
