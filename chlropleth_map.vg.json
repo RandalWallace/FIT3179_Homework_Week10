@@ -5,15 +5,14 @@
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
     "text": "Global Minimum Wage (USD) with Happiness Scores (2023)",
-    "font": "Montserrat",
     "fontSize": 20,
     "fontWeight": "bold",
     "anchor": "middle"
   },
   "projection": {
     "type": "equirectangular",
-    "scale": 200,
-    "translate": [600, 350]
+    "scale": 200,      
+    "translate": [600, 350]    
   },
   "layer": [
     {
@@ -132,26 +131,5 @@
         ]
       }
     }
-  ],
-  "config": {
-    "title": {
-      "font": "Montserrat",
-      "fontSize": 18,
-      "fontWeight": "bold"
-    },
-    "axis": {
-      "labelFont": "Montserrat",
-      "labelFontSize": 12,
-      "titleFont": "Montserrat",
-      "titleFontSize": 13,
-      "titleFontWeight": "bold"
-    },
-    "legend": {
-      "labelFont": "Montserrat",
-      "labelFontSize": 12,
-      "titleFont": "Montserrat",
-      "titleFontSize": 13,
-      "titleFontWeight": "bold"
-    }
-  }
+  ]
 }
