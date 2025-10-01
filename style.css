@@ -180,7 +180,7 @@ footer p {
 
 /* Make bar chart column wider */
 #bar_chart {
-  flex: 2 1 600px;   
+  flex: 2 1 550px;   
   min-width: 500px;  /* won’t shrink too much */
   max-width: 900px;  /* cap if very large screen */
 }
