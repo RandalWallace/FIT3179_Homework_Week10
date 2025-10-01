@@ -4,15 +4,16 @@
   "height": 700,
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
-    "text": "Global Minimum Wage (USD) with Happiness Scores",
+    "text": "Global Minimum Wage (USD) with Happiness Scores (2023)",
+    "font": "Montserrat",
     "fontSize": 20,
     "fontWeight": "bold",
     "anchor": "middle"
   },
   "projection": {
     "type": "equirectangular",
-    "scale": 200,      
-    "translate": [600, 350]    
+    "scale": 200,
+    "translate": [600, 350]
   },
   "layer": [
     {
@@ -129,8 +130,10 @@
           {"field": "formatted_rank", "type": "nominal", "title": "🏆 Global Ranking"},
           {"field": "Health (Life Expectancy)", "type": "quantitative", "title": "🏥 Life Expectancy Index", "format": ".3f"}
         ]
-      },
-    "config": {
+      }
+    }
+  ],
+  "config": {
     "title": {
       "font": "Montserrat",
       "fontSize": 18,
@@ -151,6 +154,4 @@
       "titleFontWeight": "bold"
     }
   }
-    }
-  ]
 }
