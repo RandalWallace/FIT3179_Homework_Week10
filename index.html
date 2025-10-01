@@ -23,10 +23,10 @@
         The data draws from reputable open sources such as the World Bank and OECD.
     </p>
     <p>
-        To make complex relationships more obvious, various idioms are utilised to highlight geographic patterns and statistical corelations, making it easier for 
+        Various idioms are utilised to highlight geographic patterns and statistical corelations, making it easier for 
         users to compare regions and uncover insights. I encourage the reader to ask themselves "In what regard is living in Australia better than some other country that 
-        is often idolised?".
-        Interactive features such as filters and tooltips allow for these personalised insights. Have fun!
+        is often idolised?". 
+        Interactive features such as tooltips allow for these personalised insights.
     </p>
   </section>
 
@@ -95,17 +95,10 @@
     different countries. Instead of just looking at raw income, PPP accounts for cost of living and price levels — making it possible to compare living standards 
     across the globe.
   </p>
-    <br>
   <p>
-    Unsurprisingly, wealthy nations like Luxembourg, Switzerland, and Ireland often top the charts, with small populations and strong financial sectors giving 
+    Unsurprisingly, wealthy nations like Luxembourg and Switzerland often top the charts, with small populations and strong financial sectors giving 
     them a boost. On the flip side, emerging economies such as India and Nigeria rank lower, but their GDP per capita has been growing steadily over the last 
     decade.
-  </p>
-  <p>
-    Fun fact: If the European microstate of Luxembourg were a person, they’d be one of the richest in the world — its PPP-adjusted GDP per capita is more than 
-    5 times the global average. Meanwhile, Qatar has historically been a frontrunner thanks to oil and gas, though diversification is shifting its numbers. 
-    Another surprise? Despite being one of the world’s largest economies, China’s per capita GDP still lags far behind developed nations, reminding us how 
-    population size plays a huge role.
   </p>
     <p>
         Note that GDP per Capita is basically an averaged metric. This means it does not solely represent the median person - that if there are a handful of rich people this would 
@@ -121,21 +114,37 @@
 
   <!-- Bubble + Bump -->
   <section class="chart-column">
-    <h2>Government Expenditure & Immigration</h2>
+    <div class="chart-text">
+        <h2>Government Expenditure & Immigration</h2>
+        <p>
+            The bubble chart shows that generally, higher welfare/government reinvestment into society leads to happier people.
+            Government spending directly shapes the wellbeing of citizens. This relationship in this bubble chart shows that countries that invest 
+            heavily in healthcare, education and other social programs often report longer life expectancies and happiness.
+        </p>
+        <p>
+            Nordic nations like Sweden and Norway are a classic example, where high public spending translates into strong safety nets 
+            and overall life satisfaction.
+        </p>
+    </div>
     <div id="bubble_chart1" class="chart center-chart"></div>
     <div class="chart-text">
       <p>
-        The bubble chart shows how government spending relates to immigration,
-        suggesting that stronger welfare states attract more newcomers.
+          Higher public spending causes higher happiness levels, which many argue is a reason for increasing immigration numbers.
+          People want to move to a happier country with more opportunities and developed infrastructure. Migration patterns reinforce the idea 
+          that people naturally seek environments that offer a better future. 
       </p>
     </div>
     <div id="bump_chart" class="chart center-chart"></div>
     <div class="chart-text">
-      <h2>Migration Trends Over Time</h2>
       <p>
         The bump chart illustrates changes in immigration flows, providing a
-        dynamic view of how migration patterns evolve.
+        dynamic view of how immigration patterns in Australia have changed over time. 
       </p>
+        <p>
+            Australia's diverse inflows not only reflect its attractiveness over time, but also highligh how social and economic 
+            conditions in origin countries contrast against Australia's standard of living and social ladder. In many ways, the story of immigration 
+            is a metric for the quality of life - people voting with their feet, moving towards a place where they see a better place to thrive and reach their full potential.
+        </p>
     </div>
   </section>
 
@@ -144,12 +153,17 @@
     <div class="chart-text">
       <h2>Tourism and Well-being</h2>
       <p>
-        Tourism provides another lens on quality of life. Cultural richness,
-        environment, and openness all shape both perceptions and lived experiences
-        of well-being.
+        Theoretically, tourism can boost GDP per capita and reduce unemployment by creating jobs and attracting foreign spending, but it comes with trade-offs.
+          Countries like Japan and Spain show that rapid growth in tourists can strain infrastucture, raise housing costs and spark debates about cultural preservation.
+          While economic benefits exist, a careful balance in government policies is needed - sustainable growth needs to be enrcouraged, ensuring that 
+          residents' quality of life is not compromised.
       </p>
     </div>
     <div id="bubble_chart2" class="chart center-chart"></div>
+      <p>
+          This bubble chart shows that tourism has not been effective in combatting unemployment - especially prevelant with Spain, Turkey and Greece.
+          It should be noted that especially with the European countries, a lot of other factors affect this unemployment rate, such as the Euro as a shared currency (monetary policy) and work culture in Europe.
+      </p>
   </section>
 
   <!-- Conclusion -->
@@ -159,12 +173,54 @@
       This dashboard demonstrates how quality of life is influenced by a complex
       mix of economic, social, and cultural factors. From global patterns on the
       map to the dynamics of migration and tourism, the evidence highlights the
-      interconnected nature of well-being in today’s world.
+      interconnected nature of well-being in today’s world. What do you think Australia does good 
+        and what do you think they could do better for our standard of living?
     </p>
   </section>
 
-  <footer>
-    <p>&copy; 2025 Randal Wallace | FIT3179 Assignment 2</p>
-  </footer>
+<footer style="background: #f4f4f4; padding: 20px; font-size: 0.9rem; line-height: 1.5; border-top: 1px solid #ddd;">
+  <p><strong>Randal Wallace</strong><br>
+  FIT3179 Assignment 2</p>
+
+  <p><strong>Data Sources:</strong></p>
+  <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+    <li>Minimum Wage by Country (various years): 
+      <a href="https://www.kaggle.com/datasets/peipeichen/minimum-wage-by-country" target="_blank">Kaggle</a>
+    </li>
+    <li>Social Statistics (2023): 
+      <a href="https://www.kaggle.com/datasets/nelgiriyewithana/countries-of-the-world-2023" target="_blank">Kaggle</a>
+    </li>
+    <li>Happiness Levels (2023): 
+      <a href="https://www.kaggle.com/datasets/unsdsn/world-happiness/data" target="_blank">Kaggle</a>
+    </li>
+    <li>Inbound Tourism (2018): 
+      <a href="https://data-explorer.oecd.org/vis?tm=tourism&pg=0&snb=47&vw=tb&df%5bds%5d=dsDisseminateFinalDMZ&df%5bid%5d=DSD_TOURISM_INTER%40DF_INBOUND&df%5bag%5d=OECD.CFE.TOU&df%5bvs%5d=1.0&dq=......TDS&lom=LASTNPERIODS&lo=5&to%5bTIME_PERIOD%5d=false" target="_blank">OECD</a>
+    </li>
+    <li>Government Expenditure (2023): 
+      <a href="https://www.imf.org/external/datamapper/exp@FPP/USA/FRA/JPN/GBR/SWE/ESP/ITA/ZAF/IND/CHN" target="_blank">IMF</a>
+    </li>
+    <li>GDP per Capita PPP (2024): 
+      <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD" target="_blank">World Bank</a>
+    </li>
+    <li>Countries by Continent: 
+      <a href="https://www.kaggle.com/datasets/hserdaraltan/countries-by-continent" target="_blank">Kaggle</a>
+    </li>
+    <li>Immigrants to Australia (various years): 
+      <a href="https://ourworldindata.org/explorers/migration-flows?time=2020&overlay=download-data&Country=Australia&Metric=Immigrants%3A+People+moving+to+country&Gender=All+migrants&country=~OWID_WRL" target="_blank">Our World in Data</a>
+    </li>
+  </ul>
+
+  <p style="margin-top: 10px; font-style: italic;">
+    Note: Some datasets were cleaned and adjusted for consistency — including harmonising country names, linking to continents, and normalising values 
+    for visual clarity.
+  </p>
+<p style="margin-top: 10px; font-style: italic;">
+    AI Use Declaration:
+    Spell and grammar checks were made on texts on this page. Generative AI was also used to make texts more concise.
+    Data wrangling and analysis were done by the author without the use of AI.
+    AI was used to assist with coding visualisation on Vega-Lite and CSS.
+</p>
+</footer>
+
 </body>
 </html>
