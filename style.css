@@ -77,19 +77,20 @@ h2 {
   flex-wrap: nowrap; /* dashboard: no wrapping */
 }
 
+/* Alt layout: same as chart-row, but reverse order */
 .chart-row.alt-layout {
-  flex-direction: row-reverse;
+  flex-direction: row-reverse;   /* flips chart & text */
+  align-items: flex-start;       /* ensure top-alignment */
+  justify-content: space-between;/* keep spacing equal */
 }
 
+/* Stacked-left: chart + text in columns, aligned neatly */
 .chart-row.stacked-left {
-  align-items: stretch;
+  flex-direction: column;  /* stack instead of row */
+  align-items: flex-start; /* align text & chart to the left */
+  gap: 20px;               /* smaller gap when stacked */
 }
 
-.chart-column {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
 
 /* ===== Charts ===== */
 .chart {
