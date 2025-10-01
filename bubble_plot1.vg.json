@@ -140,5 +140,26 @@
       {"field": "Pop_fmt", "type": "nominal", "title": "👥 Population"},
       {"field": "CPI", "type": "quantitative", "title": "📊 CPI", "format": ".1f"}
     ]
+  },
+  "config": {
+    "title": {
+      "font": "Montserrat",
+      "fontSize": 18,
+      "fontWeight": "bold"
+    },
+    "axis": {
+      "labelFont": "Montserrat",
+      "labelFontSize": 12,
+      "titleFont": "Montserrat",
+      "titleFontSize": 13,
+      "titleFontWeight": "bold"
+    },
+    "legend": {
+      "labelFont": "Montserrat",
+      "labelFontSize": 12,
+      "titleFont": "Montserrat",
+      "titleFontSize": 13,
+      "titleFontWeight": "bold"
+    }
   }
 }
