@@ -8,7 +8,7 @@ vegaEmbed('#parallel_coordinate', 'https://raw.githubusercontent.com/RandalWalla
     console.log("Vega-Lite chart loaded from external file!");
     }).catch(console.error);
 
-vegaEmbed('#bar_chart', 'https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/bar_chart.vg.json', {actions: true})
+vegaEmbed('#bar_chart', 'https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/refs/heads/main/bar_chart.vg.json', {actions: false})
     .then(result => {
     console.log("Vega-Lite chart loaded from external file!");
     }).catch(console.error);
