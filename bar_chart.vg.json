@@ -5,6 +5,7 @@
     "type": "fit-x",
     "contains": "padding"
   },
+  "view": {"continuousWidth": 600, "continuousHeight": 500},
   "height": 500,
 
   "data": {
