@@ -11,8 +11,8 @@
   },
   "projection": {
     "type": "equirectangular",
-    "scale": 200,      
-    "translate": [600, 350]    
+    "scale": 200,
+    "translate": [750, 350]   // ✅ centered properly
   },
   "layer": [
     {
@@ -51,7 +51,8 @@
             "orient": "bottom",
             "columns": 4,
             "labelFontSize": 10,
-            "symbolSize": 60
+            "symbolSize": 60,
+            "labelLimit": 0   // ✅ no truncation
           }
         },
         "tooltip": [
@@ -119,7 +120,8 @@
             "orient": "bottom",
             "columns": 5,
             "labelFontSize": 10,
-            "symbolSize": 60
+            "symbolSize": 60,
+            "labelLimit": 0   // ✅ no truncation
           }
         },
         "tooltip": [
