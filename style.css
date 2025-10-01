@@ -8,7 +8,7 @@
   --color-accent: #0066cc;
   --bg-color: #fafafa;
   --max-width: 1400px;
-  --section-spacing: 30px;
+  --section-spacing: 60px;
 }
 
 /* ===== Base ===== */
@@ -19,16 +19,15 @@ body {
   background: var(--bg-color);
   line-height: 1.6;
   overflow-x: hidden;
-  padding-bottom: 120px;
+  padding-bottom: 140px;
   position: relative;
 }
 
 /* ===== Header ===== */
 header {
   text-align: center;
-  padding: 10px 20px 5px;
+  padding: 40px 20px 20px;
 }
-
 h1 {
   margin: 0 auto;
   font-size: 3rem;
@@ -36,6 +35,7 @@ h1 {
   font-family: var(--font-sans);
   color: #2c3e50;
   letter-spacing: 1px;
+  text-align: center;
 }
 
 /* ===== Section Containers ===== */
@@ -46,7 +46,7 @@ h1 {
 .conclusion {
   max-width: var(--max-width);
   margin: var(--section-spacing) auto;
-  padding: 0 15px;
+  padding: 0 20px;
   box-sizing: border-box;
 }
 
@@ -56,13 +56,13 @@ h2 {
   font-size: 1.6rem;
   font-weight: 600;
   margin: 0 0 10px;
-  color: var(--color-accent);
+  color: var(--accent-color);
 }
 
 /* ===== Map ===== */
 #map.full-width {
-  width: 90%;          /* keep consistent width */
-  margin: 0 auto;      /* center horizontally */
+  width: 85vw;
+  margin: 0 auto;
   display: block;
   height: auto !important;
   min-height: 0;
@@ -72,25 +72,16 @@ h2 {
 .chart-row {
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-between;
   gap: 40px;
   flex-wrap: nowrap;
 }
-
-/* Reverse chart ↔ text */
 .chart-row.alt-layout {
   flex-direction: row-reverse;
 }
-
-/* Parallel coords + radar beside text */
 .chart-row.stacked-left {
-  display: grid;
-  grid-template-columns: 2fr 1fr; /* charts wider than text */
-  gap: 40px;
-  align-items: start;
+  align-items: stretch;
 }
-
-/* Column container for multiple charts */
 .chart-column {
   display: flex;
   flex-direction: column;
@@ -99,32 +90,32 @@ h2 {
 
 /* ===== Charts ===== */
 .chart {
-  flex: 1;
-  max-width: 600px;
-  min-height: 400px;
+  flex: 1 1 auto;
+  max-width: 100%;
+  min-height: 500px;
+  box-sizing: border-box;
   border: 1px solid #ddd;
   border-radius: 6px;
   background: white;
   padding: 10px;
-  box-sizing: border-box;
+  overflow: visible;
+  position: relative;
 }
 
-/* ===== Centered Charts (Bubble + Bump) ===== */
+/* ===== Centered Charts ===== */
 .center-chart {
   display: block;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   width: 80%;
   max-width: 1000px;
 }
-
-/* Centered chart section with text */
 .center-chart-section {
   text-align: center;
 }
 .center-chart-section .chart-text {
   margin: 0 auto 20px auto;
-  max-width: 800px;
-  text-align: center;  /* ✅ center align text */
+  max-width: 700px;
 }
 .center-chart-section .chart {
   margin: 0 auto;
@@ -134,28 +125,26 @@ h2 {
 
 /* ===== Text Boxes ===== */
 .chart-text {
-  flex: 1;
-  max-width: 550px;
   font-family: var(--font-serif);
   font-size: 1rem;
   color: var(--color-secondary);
   line-height: 1.7;
   text-align: justify;
+  margin: 0 auto;
   background: var(--bg-color);
   padding: 10px 15px;
   border-radius: 4px;
-  box-sizing: border-box;
+  max-width: 700px;
 }
 
 /* ===== Intro / Conclusion ===== */
 .intro,
 .conclusion {
   background: #f0f4f9;
-  border-left: 4px solid var(--color-accent);
+  border-left: 4px solid var(--accent-color);
   border-radius: 6px;
   padding: 30px;
 }
-
 .intro p,
 .conclusion p {
   font-family: var(--font-serif);
@@ -173,29 +162,10 @@ footer {
   position: relative;
   z-index: 1;
 }
-
 footer p {
   margin: 0;
   font-family: var(--font-sans);
   font-size: 0.85rem;
   color: var(--color-muted);
   letter-spacing: 0.5px;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 900px) {
-  .chart-row,
-  .chart-row.alt-layout,
-  .chart-row.stacked-left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .chart,
-  .chart-text {
-    max-width: 90%;
-  }
-  .center-chart-section .chart-text {
-    text-align: center;
-  }
 }
