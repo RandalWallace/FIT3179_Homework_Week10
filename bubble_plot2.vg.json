@@ -115,5 +115,26 @@
       {"field": "Tourism_fmt", "type": "nominal", "title": "✈️ Inbound Tourism (2018)"},
       {"field": "GDP_fmt", "type": "nominal", "title": "💰 GDP per Capita (PPP, 2019)"}
     ]
+  },
+  "config": {
+    "title": {
+      "font": "Montserrat",
+      "fontSize": 18,
+      "fontWeight": "bold"
+    },
+    "axis": {
+      "labelFont": "Montserrat",
+      "labelFontSize": 12,
+      "titleFont": "Montserrat",
+      "titleFontSize": 13,
+      "titleFontWeight": "bold"
+    },
+    "legend": {
+      "labelFont": "Montserrat",
+      "labelFontSize": 12,
+      "titleFont": "Montserrat",
+      "titleFontSize": 13,
+      "titleFontWeight": "bold"
+    }
   }
 }
