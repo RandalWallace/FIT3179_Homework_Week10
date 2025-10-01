@@ -178,8 +178,3 @@ footer p {
   color: var(--color-muted);
   letter-spacing: 0.5px;
 }
-
-.chart-column h2 {
-  margin-top: 0.4em;   /* tighten space above */
-  margin-bottom: 0.2em; /* tighten space below */
-}
