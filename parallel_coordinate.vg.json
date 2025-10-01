@@ -13,19 +13,13 @@
       "name": "region_filter",
       "bind": {
         "input": "select",
-        "options": [
-          "All",
-          "Asia",
-          "Europe",
-          "Africa",
-          "North America",
-          "South America",
-          "Oceania"
-        ],
+        "options": ["All","Asia","Europe","Africa","North America","South America","Oceania"],
         "name": "Select Region: "
       },
       "value": "All"
-    }
+    },
+    { "name": "annotated_countries", "value": ["Australia", "Singapore", "Sweden"] },
+    { "name": "last_metric", "value": "Unemployment" }
   ],
 
   "transform": [
@@ -92,62 +86,134 @@
     {
       "calculate": "datum.max_val === datum.min_val ? 0.5 : (datum.value_num - datum.min_val) / (datum.max_val - datum.min_val)",
       "as": "value_normalised"
+    },
+    {
+      "calculate": "indexof(annotated_countries, datum['Country']) >= 0 ? 'yes' : 'no'",
+      "as": "is_annotated"
     }
   ],
 
-  "mark": {
-    "type": "line",
-    "point": true,
-    "interpolate": "linear",
-    "strokeWidth": 1.5
-  },
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "highlight",
+          "select": {
+            "type": "point",
+            "fields": ["Country"],
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "mark": {"type": "line", "point": true, "interpolate": "linear", "strokeWidth": 1.5},
+      "encoding": {
+        "x": {
+          "field": "renamed",
+          "type": "ordinal",
+          "axis": {"labelAngle": -45, "title": null, "labelLimit": 120},
+          "scale": {"padding": 0.1}
+        },
+        "y": {
+          "field": "value_normalised",
+          "type": "quantitative",
+          "axis": {"title": "Normalised Value (0-1)"},
+          "scale": {"domain": [0, 1], "nice": false}
+        },
+        "detail": {"field": "Country"},
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Asia", "Europe", "Africa", "North America", "South America", "Oceania"],
+            "range": ["#e6b3cc", "#b3d1e6", "#e6d9b3", "#b3e6cc", "#d9b3e6", "#e6ccb3"]
+          },
+          "legend": null
+        },
+        "opacity": {
+          "condition": {"param": "highlight", "empty": false, "value": 0.6},
+          "value": 0.3
+        },
+        "tooltip": [
+          {"field": "Country", "title": "Country"},
+          {"field": "renamed", "title": "Metric"},
+          {"field": "value", "title": "Original Value"},
+          {"field": "value_normalised", "title": "Normalised", "format": ".3f"},
+          {"field": "Continent", "title": "Continent"}
+        ]
+      }
+    },
 
-  "encoding": {
-    "x": {
-      "field": "renamed",
-      "type": "ordinal",
-      "axis": {"labelAngle": -45, "title": null, "labelLimit": 120},
-      "scale": {"padding": 0.1}
+    {
+      "transform": [{"filter": "datum.is_annotated === 'yes'"}],
+      "mark": {"type": "line", "point": false, "interpolate": "linear", "strokeWidth": 3},
+      "encoding": {
+        "x": {"field": "renamed", "type": "ordinal", "scale": {"padding": 0.1}},
+        "y": {"field": "value_normalised", "type": "quantitative"},
+        "detail": {"field": "Country"},
+        "color": {
+          "field": "Country",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Australia", "Singapore", "Sweden"],
+            "range": ["#0d47a1", "#1b5e20", "#b71c1c"]
+          },
+          "legend": null
+        },
+        "opacity": {"value": 1},
+        "tooltip": [
+          {"field": "Country", "title": "Country"},
+          {"field": "renamed", "title": "Metric"},
+          {"field": "value", "title": "Original Value"},
+          {"field": "value_normalised", "title": "Normalised", "format": ".3f"}
+        ]
+      }
     },
-    "y": {
-      "field": "value_normalised",
-      "type": "quantitative",
-      "axis": {"title": "Normalised Value (0-1)"},
-      "scale": {"domain": [0, 1], "nice": false}
+
+    {
+      "transform": [{"filter": "datum.is_annotated === 'yes'"}],
+      "mark": {"type": "point", "size": 40, "filled": true},
+      "encoding": {
+        "x": {"field": "renamed", "type": "ordinal"},
+        "y": {"field": "value_normalised", "type": "quantitative"},
+        "color": {
+          "field": "Country",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Australia", "Singapore", "Sweden"],
+            "range": ["#2A7AB5", "#1FAB1F", "#BA0F10"]
+          },
+          "legend": null
+        },
+        "opacity": {"value": 1}
+      }
     },
-    "detail": {"field": "Country"},
-    "color": {
-      "field": "Country",
-      "type": "nominal",
-      "legend": null,   
-      "scale": {"scheme": "category20"}
-    },
-    "opacity": {
-      "condition": {"selection": "highlight", "value": 0.9},
-      "value": 0.2
-    },
-    "tooltip": [
-      {"field": "Country", "title": "Country"},
-      {"field": "renamed", "title": "Metric"},
-      {"field": "value", "title": "Original Value"},
-      {"field": "value_normalised", "title": "Normalised", "format": ".3f"},
-      {"field": "Continent", "title": "Continent"}
-    ]
-  },
-  "selection": {
-    "highlight": {
-      "type": "single",
-      "on": "mouseover",
-      "fields": ["Country"],
-      "empty": "none"
+
+    {
+      "transform": [
+        {"filter": "datum.is_annotated === 'yes'"},
+        {"filter": "datum.renamed === last_metric"}
+      ],
+      "mark": {"type": "text", "fontWeight": "bold", "dx": 8, "align": "left", "baseline": "middle"},
+      "encoding": {
+        "x": {"field": "renamed", "type": "ordinal"},
+        "y": {"field": "value_normalised", "type": "quantitative"},
+        "text": {"field": "Country"},
+        "color": {
+          "field": "Country",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Australia", "Singapore", "Sweden"],
+            "range": ["#2A7AB5", "#1FAB1F", "#BA0F10"]
+          },
+          "legend": null
+        }
+      }
     }
-  },
+  ],
+
   "config": {
-    "title": {
-      "font": "Montserrat",
-      "fontSize": 18,
-      "fontWeight": "bold"
-    },
+    "title": {"font": "Montserrat", "fontSize": 18, "fontWeight": "bold"},
     "axis": {
       "labelFont": "Montserrat",
       "labelFontSize": 12,
