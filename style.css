@@ -77,34 +77,33 @@ h2 {
   flex-wrap: nowrap; /* dashboard: no wrapping */
 }
 
-/* Alt layout: same as chart-row, but reverse order */
 .chart-row.alt-layout {
-  flex-direction: row-reverse;   /* flips chart & text */
-  align-items: flex-start;       /* ensure top-alignment */
-  justify-content: space-between;/* keep spacing equal */
+  flex-direction: row-reverse;
 }
 
-/* Stacked-left: chart + text in columns, aligned neatly */
 .chart-row.stacked-left {
-  flex-direction: column;  /* stack instead of row */
-  align-items: flex-start; /* align text & chart to the left */
-  gap: 20px;               /* smaller gap when stacked */
+  align-items: stretch;
 }
 
+.chart-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
 /* ===== Charts ===== */
 .chart {
-  flex: 1;
-  max-width: 550px;  /* ✅ keeps bar chart same width as radar/parallel */
-  min-height: 400px;
+  flex: 1 1 auto;
+  max-width: 100%;
+  min-height: 500px;
   box-sizing: border-box;
   border: 1px solid #ddd;
   border-radius: 6px;
   background: white;
   padding: 10px;
-  overflow: visible;
+  overflow: visible;   /* dropdowns/legends not cut off */
+  position: relative;  /* keeps dropdowns anchored */
 }
-
 
 /* Center-specific style for Bubble + Bump */
 .center-chart {
