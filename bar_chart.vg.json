@@ -1,11 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {"text": "PPP-Adjusted GDP per Capita (2023)"},
-  "autosize": {
-    "type": "fit-x",
-    "contains": "padding"
-  },
-  "view": {"continuousWidth": 600, "continuousHeight": 500},
+  "autosize": {"type": "fit-x", "contains": "padding"},
+  "view": {"continuousWidth": 650, "continuousHeight": 500},
   "height": 500,
 
   "data": {
@@ -25,78 +22,176 @@
         "key": "Country",
         "fields": ["Continent"]
       }
-    },
-    {"filter": {"selection": "continent_select"}},
-    {
-      "window": [{"op": "rank", "as": "rank"}],
-      "sort": [{"field": "gdp_value", "order": "descending"}]
-    },
-    {"filter": "datum.rank <= 25"}
+    }
   ],
 
-  "selection": {
-    "continent_select": {
-      "type": "multi",
-      "fields": ["Continent"],
-      "bind": "legend",
-      "empty": "all"
-    }
-  },
-
-  "mark": {"type": "bar"},
-
-  "encoding": {
-    "x": {
-      "field": "Country Name",
-      "type": "nominal",
-      "title": "Country",
-      "axis": {"labelAngle": -45},
-      "sort": {"field": "gdp_value", "order": "descending"}
-    },
-    "y": {
-      "field": "gdp_value",
-      "type": "quantitative",
-      "title": "GDP per Capita (PPP, USD)",
-      "scale": {"zero": true}
-    },
-    "color": {
-      "field": "Continent",
-      "type": "nominal",
-      "legend": {"title": "Continent (Click to Select)"},
-      "scale": {"scheme": "category10"}
-    },
-    "tooltip": [
-      {"field": "Country Name", "type": "nominal", "title": "🏳️ Country"},
-      {"field": "Continent", "type": "nominal", "title": "🌍 Continent"},
-      {
-        "field": "gdp_value",
-        "type": "quantitative",
-        "title": "💰 GDP per Capita (PPP)",
-        "format": ",.0f"
+  "layer": [
+    {
+      "selection": {
+        "continent_select": {
+          "type": "multi",
+          "fields": ["Continent"],
+          "bind": "legend",
+          "empty": "all"
+        }
       },
-      {"field": "rank", "type": "quantitative", "title": "🏅 Rank"}
-    ]
-  },
+      "transform": [
+        {
+          "calculate": "datum['Country Name'] == 'Australia' ? true : false",
+          "as": "is_australia"
+        },
+        {
+          "filter": {
+            "or": [
+              {"field": "is_australia", "equal": true},
+              {"selection": "continent_select"}
+            ]
+          }
+        },
+        {
+          "window": [{"op": "rank", "as": "rank"}],
+          "sort": [{"field": "gdp_value", "order": "descending"}]
+        },
+        {"filter": "datum.rank <= 25"}
+      ],
+      "mark": {"type": "bar"},
+      "encoding": {
+        "x": {
+          "field": "Country Name",
+          "type": "nominal",
+          "title": "Country",
+          "axis": {"labelAngle": -45, "labelFontSize": 12, "titleFontSize": 14},
+          "sort": {"field": "gdp_value", "order": "descending"}
+        },
+        "y": {
+          "field": "gdp_value",
+          "type": "quantitative",
+          "title": "GDP per Capita (PPP, USD)",
+          "axis": {"format": "$,.0f", "titleFontSize": 14, "labelFontSize": 12},
+          "scale": {"zero": true}
+        },
+        "color": {
+          "condition": {
+            "test": "datum['Country Name'] == 'Australia'",
+            "value": "#e41a1c"
+          },
+          "field": "Continent",
+          "type": "nominal",
+          "legend": {"title": "Continent (Click to Select)"},
+          "scale": {"scheme": "category10"}
+        },
+        "tooltip": [
+          {"field": "Country Name", "type": "nominal", "title": "🏳️ Country"},
+          {"field": "Continent", "type": "nominal", "title": "🌍 Continent"},
+          {
+            "field": "gdp_value",
+            "type": "quantitative",
+            "title": "💰 GDP per Capita (PPP)",
+            "format": "$,.0f"
+          },
+          {"field": "rank", "type": "quantitative", "title": "🏅 Rank"}
+        ]
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "calculate": "datum['Country Name'] == 'Australia' ? true : false",
+          "as": "is_australia"
+        },
+        {
+          "filter": {
+            "or": [
+              {"field": "is_australia", "equal": true},
+              {"selection": "continent_select"}
+            ]
+          }
+        },
+        {"joinaggregate": [{"op": "mean", "field": "gdp_value", "as": "avg_gdp"}]}
+      ],
+      "mark": {"type": "rule", "color": "red", "strokeDash": [4,4]},
+      "encoding": {
+        "y": {"field": "avg_gdp", "type": "quantitative"}
+      }
+    },
+    {
+      "transform": [
+        {
+          "calculate": "datum['Country Name'] == 'Australia' ? true : false",
+          "as": "is_australia"
+        },
+        {
+          "filter": {
+            "or": [
+              {"field": "is_australia", "equal": true},
+              {"selection": "continent_select"}
+            ]
+          }
+        },
+        {"joinaggregate": [{"op": "mean", "field": "gdp_value", "as": "avg_gdp"}]}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "dx": 5,
+        "dy": -5,
+        "color": "red",
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "y": {"field": "avg_gdp", "type": "quantitative"},
+        "x": {"datum": "Australia"},
+        "text": {"value": "Average GDP (filtered)"}
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "calculate": "datum['Country Name'] == 'Australia' ? true : false",
+          "as": "is_australia"
+        },
+        {
+          "filter": {
+            "or": [
+              {"field": "is_australia", "equal": true},
+              {"selection": "continent_select"}
+            ]
+          }
+        },
+        {
+          "window": [{"op": "rank", "as": "rank"}],
+          "sort": [{"field": "gdp_value", "order": "descending"}]
+        },
+        {"filter": "datum.rank == 1"}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "bottom",
+        "dy": -5,
+        "fontWeight": "bold",
+        "color": "black"
+      },
+      "encoding": {
+        "x": {"field": "Country Name", "type": "nominal"},
+        "y": {"field": "gdp_value", "type": "quantitative"},
+        "text": {"field": "Country Name"}
+      }
+    }
+  ],
 
   "config": {
-    "title": {
-      "font": "Montserrat",
-      "fontSize": 18,
-      "fontWeight": "bold"
-    },
+    "title": {"font": "Montserrat","fontSize": 20,"fontWeight": "bold"},
     "axis": {
-      "labelFont": "Montserrat",
-      "labelFontSize": 12,
-      "titleFont": "Montserrat",
-      "titleFontSize": 13,
-      "titleFontWeight": "bold"
+      "labelFont": "Montserrat","labelFontSize": 12,
+      "titleFont": "Montserrat","titleFontSize": 14,"titleFontWeight": "bold"
     },
     "legend": {
-      "labelFont": "Montserrat",
-      "labelFontSize": 12,
-      "titleFont": "Montserrat",
-      "titleFontSize": 13,
-      "titleFontWeight": "bold"
+      "labelFont": "Montserrat","labelFontSize": 12,
+      "titleFont": "Montserrat","titleFontSize": 14,"titleFontWeight": "bold"
     }
   }
 }
