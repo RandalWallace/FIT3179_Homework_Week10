@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIT3179 Assignment 2</title>
-    <!-- Include Vega, Vega-Lite, and Vega-Embed -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@6"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@6"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script> 
-    <script src = "https://randalwallace.github.io/FIT3179_Assignment2/vegalite_vis.js" defer></script>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIT3179 Assignment 2</title>
+
+  <!-- Vega, Vega-Lite, Vega-Embed -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <script src="vegalite_vis.js" defer></script>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <h1>Quality of Life Around the World</h1>
   </header>
+
   <!-- Introduction -->
   <section class="intro">
+    <h2>Introduction</h2>
     <p>
-        This visualisation explores global quality of life indicators. It focuses on economic and social themes.
-        This visualisation is designed to help students, researchers or merely curious viewers better understand how various factors interact across countries.
-        The data draws from reputable open sources such as the World Bank and OECD.
+      This visualisation explores global quality of life indicators. It focuses on economic and social themes.
+      It is designed to help students, researchers or curious viewers understand how various factors interact across countries.
+      Data is drawn from reputable sources such as the World Bank and OECD.
     </p>
     <p>
-        Various idioms are utilised to highlight geographic patterns and statistical corelations, making it easier for 
-        users to compare regions and uncover insights. I encourage the reader to ask themselves "In what regard is living in Australia better than some other country that 
-        is often idolised?". 
-        Interactive features such as tooltips allow for these personalised insights.
+      Various idioms are used to highlight geographic patterns and statistical correlations, making it easier 
+      to compare regions and uncover insights. Interactive features such as tooltips allow for personalised exploration.
     </p>
   </section>
 
@@ -35,13 +37,9 @@
     <h2>Global Overview</h2>
     <div id="map" class="chart full-width"></div>
     <p class="chart-text">
-      The map highlights worldwide differences in quality of life, providing the
-      foundation for deeper analysis. Minimum wage numbers here have been adjusted for each country's cost of living.
-    </p>
-    <p class="chart-text">
-      Did you know that Australia actually has the highest purchasing-power-adjusted minimum wage in the world?
-      Another fun fact: Did you know that extremely developed nations like Singapore and Sweden actually have no legal minimum wage - it's entirely derived from the free market.
-      Do you notice any trends between minimum wage and happiness levels of a country?
+      The map highlights worldwide differences in quality of life. Minimum wage numbers here have been adjusted for each country's cost of living.  
+      Did you know Australia has the highest PPP-adjusted minimum wage in the world?  
+      Fun fact: developed nations like Singapore and Sweden have no legal minimum wage at all.
     </p>
   </section>
 
@@ -54,34 +52,18 @@
     <div class="chart-text">
       <h2>Comparative Metrics</h2>
       <p>
-        Beyond economics, social factors shape the quality of life for individuals in a country in a myriad of ways.
-        Looking at factors like educational enrolment, healthcare spending and unemployment allow us to build a more holistic picture of wellbeing across different nations.
-        These two charts complement each other: the parallel coordinate reveals broad multi-variable relationships across countries, while the radar chart
-        illustrates detailed profiles for selected cases.
-        </p>
-        <br>
-    <p>
-        Compare your region of interest with the drop-down menu on the parallel coordinate chart!
-        Look at individual country's statistics with the radar chart! What aspects could Australia improve in?
+        Beyond economics, social factors shape quality of life: healthcare spending, education enrolment, unemployment, fertility rates and more.  
+        The parallel coordinate chart shows broad multi-variable relationships, while the radar chart illustrates detailed profiles.
       </p>
-        <br>
-        <p>
-            What patterns do you see when you compare developed countries with less-developed ones? Which developed country's statistics surprises you the most?
-        </p>
-        <br>
-        <p>
-            Higher-income countries often show lower infant mortality rates, higher life expectancy,better healthcare access and higher educational enrolment rates.
-            Makes me wonder if I'm only in university because I am a mere naive beneficiary of being born in a developed country... 
-            Some middle-income nations are closing the gap quickly, investing heavily in public health and education. 
-            Meanwhile, countries with higher fertility rates frequently face challenges in providing universal education and healthcare coverage. Striking a balance is key for governments to achieve.
-        </p>
-        <br>
-        <p>
-            Fun fact: Bhutan, while small, places heavy emphasis on education and wellbeing, aligning with its philosophy of "Gross National Happiness".
-        </p>
-        <br>
-        <p>
-        Note: The data here has been normalised on a scale of 0-1. Metrics such as education enrolment can be above 100% because of the way they are defined and calculated.
+      <p>
+        Compare your region of interest with the dropdown menu on the parallel coordinate chart, or inspect single countries in the radar chart.
+      </p>
+      <p>
+        Higher-income countries often show lower infant mortality, higher life expectancy, better healthcare access and higher education enrolment rates.  
+        Some middle-income nations are closing the gap quickly. Bhutan, for example, prioritises education and wellbeing in its philosophy of "Gross National Happiness".
+      </p>
+      <p>
+        Note: The data here has been normalised on a scale of 0–1. Some education metrics exceed 100% due to how they are defined.
       </p>
     </div>
   </section>
@@ -90,61 +72,38 @@
   <section class="chart-row alt-layout">
     <div class="chart-text">
       <h2>Socioeconomic Breakdown</h2>
- <p>
-    Gross Domestic Product (GDP) per capita, adjusted for Purchasing Power Parity (PPP), gives us a fairer comparison of how much people can actually buy in 
-    different countries. Instead of just looking at raw income, PPP accounts for cost of living and price levels — making it possible to compare living standards 
-    across the globe.
-  </p>
-  <p>
-    Unsurprisingly, wealthy nations like Luxembourg and Switzerland often top the charts, with small populations and strong financial sectors giving 
-    them a boost. On the flip side, emerging economies such as India and Nigeria rank lower, but their GDP per capita has been growing steadily over the last 
-    decade.
-  </p>
-    <p>
-        Note that GDP per Capita is basically an averaged metric. This means it does not solely represent the median person - that if there are a handful of rich people this would 
-        skew the value higher. 
-    </p>
-    <p>
-        Author's note: I've lived in Singapore and confirm my family earns nowhere near that GDP per Capita nor is our purchasing power that high :'( numbers can be quite deceptive huh?
-        I guess GDP per Capita alone is not a metric to show the quality of life, but rather the overall economic prosperity of a country.
-    </p>
+      <p>
+        GDP per capita, adjusted for Purchasing Power Parity (PPP), compares living standards fairly by accounting for cost of living.  
+        Wealthy nations like Luxembourg and Switzerland top the charts, while emerging economies such as India and Nigeria rank lower but are growing steadily.
+      </p>
+      <p>
+        GDP per capita is an average: it doesn’t necessarily reflect the median citizen. A few wealthy individuals can skew the figure upward.
+      </p>
+      <p>
+        Author’s note: Having lived in Singapore, I can confirm our family’s purchasing power feels far below the official GDP per capita figure!
+        GDP per capita shows economic prosperity, but not necessarily quality of life for ordinary people.
+      </p>
     </div>
     <div id="bar_chart" class="chart"></div>
   </section>
 
   <!-- Bubble + Bump -->
   <section class="chart-column">
-    <h2>Government Expenditure & Immigration</h2>
-    <div class="chart-text">
-        <p>
-            The bubble chart shows that generally, higher welfare/government reinvestment into society leads to happier people.
-            Government spending directly shapes the wellbeing of citizens. This relationship in this bubble chart shows that countries that invest 
-            heavily in healthcare, education and other social programs often report longer life expectancies and happiness.
-        </p>
-        <p>
-            Nordic nations like Sweden and Norway are a classic example, where high public spending translates into strong safety nets 
-            and overall life satisfaction.
-        </p>
-    </div>
     <div id="bubble_chart1" class="chart center-chart"></div>
     <div class="chart-text">
+      <h2>Government Expenditure & Immigration</h2>
       <p>
-          Higher public spending causes higher happiness levels, which many argue is a reason for increasing immigration numbers.
-          People want to move to a happier country with more opportunities and developed infrastructure. Migration patterns reinforce the idea 
-          that people naturally seek environments that offer a better future. 
+        Higher government reinvestment into society generally leads to happier people.  
+        Nordic countries like Sweden and Norway show how strong welfare states translate into high life satisfaction.
       </p>
     </div>
     <div id="bump_chart" class="chart center-chart"></div>
     <div class="chart-text">
+      <h2>Migration Trends Over Time</h2>
       <p>
-        The bump chart illustrates changes in immigration flows, providing a
-        dynamic view of how immigration patterns in Australia have changed over time. 
+        The bump chart illustrates changes in immigration flows to Australia.  
+        Immigration reflects global disparities in opportunity and quality of life — people “vote with their feet” for better futures.
       </p>
-        <p>
-            Australia's diverse inflows not only reflect its attractiveness over time, but also highligh how social and economic 
-            conditions in origin countries contrast against Australia's standard of living and social ladder. In many ways, the story of immigration 
-            is a metric for the quality of life - people voting with their feet, moving towards a place where they see a better place to thrive and reach their full potential.
-        </p>
     </div>
   </section>
 
@@ -153,74 +112,25 @@
     <div class="chart-text">
       <h2>Tourism and Well-being</h2>
       <p>
-        Theoretically, tourism can boost GDP per capita and reduce unemployment by creating jobs and attracting foreign spending, but it comes with trade-offs.
-          Countries like Japan and Spain show that rapid growth in tourists can strain infrastucture, raise housing costs and spark debates about cultural preservation.
-          While economic benefits exist, a careful balance in government policies is needed - sustainable growth needs to be enrcouraged, ensuring that 
-          residents' quality of life is not compromised.
+        Tourism can boost GDP and employment but also creates trade-offs.  
+        Countries like Japan and Spain show that rapid growth in tourism can strain infrastructure, raise costs and spark cultural debates.  
+        The bubble chart shows tourism has not been effective in reducing unemployment in countries like Spain, Turkey and Greece.
       </p>
     </div>
     <div id="bubble_chart2" class="chart center-chart"></div>
-      <p>
-          This bubble chart shows that tourism has not been effective in combatting unemployment - especially prevelant with Spain, Turkey and Greece.
-          It should be noted that especially with the European countries, a lot of other factors affect this unemployment rate, such as the Euro as a shared currency (monetary policy) and work culture in Europe.
-      </p>
   </section>
 
   <!-- Conclusion -->
   <section class="conclusion">
     <h2>Conclusion</h2>
     <p>
-      This dashboard demonstrates how quality of life is influenced by a complex
-      mix of economic, social, and cultural factors. From global patterns on the
-      map to the dynamics of migration and tourism, the evidence highlights the
-      interconnected nature of well-being in today’s world. What do you think Australia does good 
-        and what do you think they could do better for our standard of living?
+      This dashboard demonstrates how quality of life is influenced by a complex mix of economic, social, and cultural factors.  
+      From global patterns on the map to migration and tourism dynamics, the evidence highlights the interconnected nature of wellbeing today.
     </p>
   </section>
 
-<footer style="background: #f4f4f4; padding: 20px; font-size: 0.9rem; line-height: 1.5; border-top: 1px solid #ddd;">
-  <p><strong>Randal Wallace</strong><br>
-  FIT3179 Assignment 2</p>
-
-  <p><strong>Data Sources:</strong></p>
-  <ul style="list-style-type: none; padding-left: 0; margin: 0;">
-    <li>Minimum Wage by Country (various years): 
-      <a href="https://www.kaggle.com/datasets/peipeichen/minimum-wage-by-country" target="_blank">Kaggle</a>
-    </li>
-    <li>Social Statistics (2023): 
-      <a href="https://www.kaggle.com/datasets/nelgiriyewithana/countries-of-the-world-2023" target="_blank">Kaggle</a>
-    </li>
-    <li>Happiness Levels (2023): 
-      <a href="https://www.kaggle.com/datasets/unsdsn/world-happiness/data" target="_blank">Kaggle</a>
-    </li>
-    <li>Inbound Tourism (2018): 
-      <a href="https://data-explorer.oecd.org/vis?tm=tourism&pg=0&snb=47&vw=tb&df%5bds%5d=dsDisseminateFinalDMZ&df%5bid%5d=DSD_TOURISM_INTER%40DF_INBOUND&df%5bag%5d=OECD.CFE.TOU&df%5bvs%5d=1.0&dq=......TDS&lom=LASTNPERIODS&lo=5&to%5bTIME_PERIOD%5d=false" target="_blank">OECD</a>
-    </li>
-    <li>Government Expenditure (2023): 
-      <a href="https://www.imf.org/external/datamapper/exp@FPP/USA/FRA/JPN/GBR/SWE/ESP/ITA/ZAF/IND/CHN" target="_blank">IMF</a>
-    </li>
-    <li>GDP per Capita PPP (2024): 
-      <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD" target="_blank">World Bank</a>
-    </li>
-    <li>Countries by Continent: 
-      <a href="https://www.kaggle.com/datasets/hserdaraltan/countries-by-continent" target="_blank">Kaggle</a>
-    </li>
-    <li>Immigrants to Australia (various years): 
-      <a href="https://ourworldindata.org/explorers/migration-flows?time=2020&overlay=download-data&Country=Australia&Metric=Immigrants%3A+People+moving+to+country&Gender=All+migrants&country=~OWID_WRL" target="_blank">Our World in Data</a>
-    </li>
-  </ul>
-
-  <p style="margin-top: 10px; font-style: italic;">
-    Note: Some datasets were cleaned and adjusted for consistency — including harmonising country names, linking to continents, and normalising values 
-    for visual clarity.
-  </p>
-<p style="margin-top: 10px; font-style: italic;">
-    AI Use Declaration:
-    Spell and grammar checks were made on texts on this page. Generative AI was also used to make texts more concise.
-    Data wrangling and analysis were done by the author without the use of AI.
-    AI was used to assist with coding visualisation on Vega-Lite and CSS.
-</p>
-</footer>
-
+  <footer>
+    <p>&copy; 2025 Randal Wallace | FIT3179 Assignment 2</p>
+  </footer>
 </body>
 </html>
