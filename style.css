@@ -82,11 +82,8 @@ h2 {
   flex-direction: row-reverse;
 }
 
-/* vertical stack, aligned left */
 .chart-row.stacked-left {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
+  align-items: stretch;
 }
 
 .chart-column {
@@ -94,6 +91,7 @@ h2 {
   flex-direction: column;
   gap: 20px;
 }
+
 
 /* ===== Charts ===== */
 .chart {
