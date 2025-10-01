@@ -94,17 +94,17 @@ h2 {
 
 /* ===== Charts ===== */
 .chart {
-  flex: 1 1 auto;
-  max-width: 100%;
-  min-height: 500px;
+  flex: 1;
+  max-width: 550px;  /* ✅ keeps bar chart same width as radar/parallel */
+  min-height: 400px;
   box-sizing: border-box;
   border: 1px solid #ddd;
   border-radius: 6px;
   background: white;
   padding: 10px;
-  overflow: visible;   /* dropdowns/legends not cut off */
-  position: relative;  /* keeps dropdowns anchored */
+  overflow: visible;
 }
+
 
 /* Center-specific style for Bubble + Bump */
 .center-chart {
