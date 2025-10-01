@@ -178,9 +178,16 @@ footer p {
   letter-spacing: 0.5px;
 }
 
+/* Make bar chart column wider */
 #bar_chart {
-  flex: 1 1 auto;     /* responsive, starts around 500px */
-  max-width: 100%;    /* never exceed 700px */
-  min-width: 0;    /* prevent it from shrinking too much */
-  margin: 0 auto;      /* center inside its flex column */
+  flex: 2 1 700px;   /* chart gets twice the space of text */
+  min-width: 500px;  /* won’t shrink too much */
+  max-width: 900px;  /* cap if very large screen */
 }
+
+/* Make text column narrower */
+.chart-row.alt-layout .chart-text {
+  flex: 1 1 300px;
+  max-width: 600px;   /* keeps it readable */
+}
+
