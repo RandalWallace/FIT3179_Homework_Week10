@@ -59,8 +59,6 @@
         "fields": ["Continent"]
       }
     },
-
-    /* ---- Outlier selection ---- */
     {"window": [{"op": "rank", "as": "rank_high"}], "sort": [{"field": "Happiness_Score_num", "order": "descending"}]},
     {"window": [{"op": "rank", "as": "rank_low"}], "sort": [{"field": "Happiness_Score_num", "order": "ascending"}]},
     {
