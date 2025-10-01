@@ -110,7 +110,7 @@
         },
         {"joinaggregate": [{"op": "mean", "field": "gdp_value", "as": "avg_gdp"}]}
       ],
-      "mark": {"type": "rule", "color": "red", "strokeDash": [4,4]},
+      "mark": {"type": "rule", "color": "black", "strokeDash": [4,4]},
       "encoding": {
         "y": {"field": "avg_gdp", "type": "quantitative"}
       }
@@ -137,7 +137,7 @@
         "baseline": "bottom",
         "dx": 5,
         "dy": -5,
-        "color": "red",
+        "color": "black",
         "fontWeight": "bold"
       },
       "encoding": {
@@ -165,7 +165,8 @@
           "window": [{"op": "rank", "as": "rank"}],
           "sort": [{"field": "gdp_value", "order": "descending"}]
         },
-        {"filter": "datum.rank == 1"}
+        {"filter": "datum.rank == 1"},
+        {"filter": "datum['Country Name'] != 'Australia'"}
       ],
       "mark": {
         "type": "text",
@@ -179,6 +180,26 @@
         "x": {"field": "Country Name", "type": "nominal"},
         "y": {"field": "gdp_value", "type": "quantitative"},
         "text": {"field": "Country Name"}
+      }
+    },
+
+    {
+      "transform": [
+        {"filter": "datum['Country Name'] == 'Australia'"}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "bottom",
+        "dy": -5,
+        "fontWeight": "bold",
+        "color": "black",
+        "fontSize": 12
+      },
+      "encoding": {
+        "x": {"field": "Country Name", "type": "nominal"},
+        "y": {"field": "gdp_value", "type": "quantitative"},
+        "text": {"value": "Australia"}
       }
     }
   ],
