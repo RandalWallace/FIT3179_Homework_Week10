@@ -181,5 +181,5 @@ footer p {
 /* ===== Bar Chart Sizing ===== */
 #bar_chart {
   flex: 1 1 500px;   /* default width ~500px, can shrink or grow */
-  max-width: 700px;  /* never go wider than 700px */
+  max-width: 500px;
 }
