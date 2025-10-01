@@ -54,68 +54,93 @@
     },
     { "calculate": "datum.Continent_raw ? datum.Continent_raw : 'Other'", "as": "Continent" },
 
-    {
-      "filter": "isFinite(datum.InboundTourism) && isFinite(datum.UnemploymentRate) && isFinite(datum.GDP_PPP)"
-    },
+    { "filter": "isFinite(datum.InboundTourism) && isFinite(datum.UnemploymentRate) && isFinite(datum.GDP_PPP)" },
 
     { "calculate": "format(datum.UnemploymentRate, '.1f') + '%'", "as": "Unemp_fmt" },
     { "calculate": "format(datum.InboundTourism, '.2s')", "as": "Tourism_fmt" },
-    { "calculate": "'$' + format(datum.GDP_PPP, ',.0f')", "as": "GDP_fmt" }
+    { "calculate": "'$' + format(datum.GDP_PPP, ',.0f')", "as": "GDP_fmt" },
+
+    /* ---- Outlier selection ---- */
+    { "window": [{"op": "rank", "as": "rank_high"}], "sort": [{"field": "InboundTourism", "order": "descending"}]},
+    { "window": [{"op": "rank", "as": "rank_low"}], "sort": [{"field": "InboundTourism", "order": "ascending"}]},
+    {
+      "calculate": "datum.rank_high==1 || datum.rank_low==1 || datum['Country Name']=='Australia' ? 1 : 0",
+      "as": "is_annotate"
+    }
   ],
 
-  "selection": {
-    "continent_sel": {
-      "type": "multi",
-      "fields": ["Continent"],
-      "bind": "legend"
+  "layer": [
+    {
+      "selection": {
+        "continent_sel": {
+          "type": "multi",
+          "fields": ["Continent"],
+          "bind": "legend"
+        }
+      },
+      "mark": {
+        "type": "circle",
+        "opacity": 0.75,
+        "stroke": "black",
+        "strokeWidth": 0.3
+      },
+      "encoding": {
+        "x": {
+          "field": "UnemploymentRate",
+          "type": "quantitative",
+          "title": "Unemployment Rate (%) (2023)",
+          "axis": {"format": ".1f", "grid": true}
+        },
+        "y": {
+          "field": "InboundTourism",
+          "type": "quantitative",
+          "title": "Inbound Tourism (Arrivals, 2018, log scale)",
+          "axis": {"grid": true, "format": "s"},
+          "scale": {"type": "log"}
+        },
+        "size": {
+          "field": "GDP_PPP",
+          "type": "quantitative",
+          "scale": {"type": "sqrt", "range": [30, 1200]},
+          "title": "GDP per Capita (PPP, 2019)"
+        },
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "title": "Continent (Click to Select)",
+          "scale": {"scheme": "tableau10"}
+        },
+        "opacity": {
+          "condition": {"selection": "continent_sel", "value": 0.85},
+          "value": 0.1
+        },
+        "tooltip": [
+          {"field": "Country Name", "title": "🌍 Country"},
+          {"field": "Continent", "title": "🌎 Continent"},
+          {"field": "Unemp_fmt", "type": "nominal", "title": "💼 Unemployment Rate (2023)"},
+          {"field": "Tourism_fmt", "type": "nominal", "title": "✈️ Inbound Tourism (2018)"},
+          {"field": "GDP_fmt", "type": "nominal", "title": "💰 GDP per Capita (PPP, 2019)"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "dy": -6,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {"field": "UnemploymentRate", "type": "quantitative"},
+        "y": {"field": "InboundTourism", "type": "quantitative"},
+        "text": {"field": "Country Name"}
+      },
+      "transform": [{"filter": "datum.is_annotate==1"}]
     }
-  },
+  ],
 
-  "mark": {
-    "type": "circle",
-    "opacity": 0.75,
-    "stroke": "black",
-    "strokeWidth": 0.3
-  },
-
-  "encoding": {
-    "x": {
-      "field": "UnemploymentRate",
-      "type": "quantitative",
-      "title": "Unemployment Rate (%) (2023)",
-      "axis": {"format": ".1f", "grid": true}
-    },
-    "y": {
-      "field": "InboundTourism",
-      "type": "quantitative",
-      "title": "Inbound Tourism (Arrivals, 2018, log scale)",
-      "axis": {"grid": true, "format": "s"},
-      "scale": {"type": "log"}
-    },
-    "size": {
-      "field": "GDP_PPP",
-      "type": "quantitative",
-      "scale": {"type": "sqrt", "range": [30, 1200]},
-      "title": "GDP per Capita (PPP, 2019)"
-    },
-    "color": {
-      "field": "Continent",
-      "type": "nominal",
-      "title": "Continent (Click to Select)",
-      "scale": {"scheme": "tableau10"}
-    },
-    "opacity": {
-      "condition": {"selection": "continent_sel", "value": 0.85},
-      "value": 0.1
-    },
-    "tooltip": [
-      {"field": "Country Name", "title": "🌍 Country"},
-      {"field": "Continent", "title": "🌎 Continent"},
-      {"field": "Unemp_fmt", "type": "nominal", "title": "💼 Unemployment Rate (2023)"},
-      {"field": "Tourism_fmt", "type": "nominal", "title": "✈️ Inbound Tourism (2018)"},
-      {"field": "GDP_fmt", "type": "nominal", "title": "💰 GDP per Capita (PPP, 2019)"}
-    ]
-  },
   "config": {
     "title": {
       "font": "Montserrat",
