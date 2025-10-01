@@ -8,7 +8,7 @@
   --color-accent: #0066cc;
   --bg-color: #fafafa;
   --max-width: 1400px;
-  --section-spacing: 60px;
+  --section-spacing: 30px;
 }
 
 /* ===== Base ===== */
@@ -19,23 +19,23 @@ body {
   background: var(--bg-color);
   line-height: 1.6;
   overflow-x: hidden;
-  padding-bottom: 140px;
+  padding-bottom: 120px; /* avoids footer overlap */
   position: relative;
 }
 
 /* ===== Header ===== */
 header {
   text-align: center;
-  padding: 40px 20px 20px;
+  padding: 10px 20px 5px;
 }
+
 h1 {
   margin: 0 auto;
-  font-size: 3rem;
+  font-size: 3rem;               /* larger for emphasis */
   font-weight: 700;
-  font-family: var(--font-sans);
-  color: #2c3e50;
+  font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  color: #2c3e50;                /* dark slate blue-grey */
   letter-spacing: 1px;
-  text-align: center;
 }
 
 /* ===== Section Containers ===== */
@@ -46,7 +46,7 @@ h1 {
 .conclusion {
   max-width: var(--max-width);
   margin: var(--section-spacing) auto;
-  padding: 0 20px;
+  padding: 0 15px;
   box-sizing: border-box;
 }
 
@@ -59,23 +59,13 @@ h2 {
   color: var(--accent-color);
 }
 
-/* ===== Map (center fix) ===== */
-#map.chart.full-width {
-  display: block !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  width: 85% !important;
-  max-width: 1000px;
-  height: auto !important;
-  min-height: 0;
-}
-
-/* Only center the text under the map */
-#map.full-width + .chart-text {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 700px;
+/* ===== Map ===== */
+#map.full-width {
+  width: 85vw;       /* map takes 85% of screen width */
+  margin: 0 auto;    /* center horizontally */
+  display: block;
+  height: auto !important; /* shrink to actual map size */
+  min-height: 0;     /* no forced minimum */
 }
 
 /* ===== Flex Layouts ===== */
@@ -84,14 +74,17 @@ h2 {
   align-items: flex-start;
   justify-content: space-between;
   gap: 40px;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap; /* dashboard: no wrapping */
 }
+
 .chart-row.alt-layout {
   flex-direction: row-reverse;
 }
+
 .chart-row.stacked-left {
   align-items: stretch;
 }
+
 .chart-column {
   display: flex;
   flex-direction: column;
@@ -108,25 +101,29 @@ h2 {
   border-radius: 6px;
   background: white;
   padding: 10px;
-  overflow: visible;
-  position: relative;
+  overflow: visible;   /* dropdowns/legends not cut off */
+  position: relative;  /* keeps dropdowns anchored */
 }
 
-/* ===== Centered Charts ===== */
+/* Center-specific style for Bubble + Bump */
 .center-chart {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
-  max-width: 1000px;
+  width: 80%;         /* take 80% of page width */
+  max-width: 1000px;  /* cap for readability */
 }
+
+/* Bubble2 section centered */
 .center-chart-section {
   text-align: center;
 }
+
 .center-chart-section .chart-text {
   margin: 0 auto 20px auto;
   max-width: 700px;
 }
+
 .center-chart-section .chart {
   margin: 0 auto;
   width: 80%;
@@ -155,6 +152,7 @@ h2 {
   border-radius: 6px;
   padding: 30px;
 }
+
 .intro p,
 .conclusion p {
   font-family: var(--font-serif);
@@ -172,6 +170,7 @@ footer {
   position: relative;
   z-index: 1;
 }
+
 footer p {
   margin: 0;
   font-family: var(--font-sans);
