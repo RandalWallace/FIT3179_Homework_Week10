@@ -61,11 +61,10 @@ h2 {
 
 /* ===== Map ===== */
 #map.full-width {
-  width: 85vw;       /* map takes 85% of screen width */
-  margin: 0 auto;    /* center horizontally */
+  width: 100%;
+  max-width: var(--max-width); /* 1400px */
+  margin: 0 auto;
   display: block;
-  height: auto !important; /* shrink to actual map size */
-  min-height: 0;     /* no forced minimum */
 }
 
 /* ===== Flex Layouts ===== */
