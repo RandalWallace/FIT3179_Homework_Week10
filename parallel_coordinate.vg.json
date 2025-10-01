@@ -134,13 +134,33 @@
       {"field": "Continent", "title": "Continent"}
     ]
   },
-
   "selection": {
     "highlight": {
       "type": "single",
       "on": "mouseover",
       "fields": ["Country"],
       "empty": "none"
+    }
+  },
+  "config": {
+    "title": {
+      "font": "Montserrat",
+      "fontSize": 18,
+      "fontWeight": "bold"
+    },
+    "axis": {
+      "labelFont": "Montserrat",
+      "labelFontSize": 12,
+      "titleFont": "Montserrat",
+      "titleFontSize": 13,
+      "titleFontWeight": "bold"
+    },
+    "legend": {
+      "labelFont": "Montserrat",
+      "labelFontSize": 12,
+      "titleFont": "Montserrat",
+      "titleFontSize": 13,
+      "titleFontWeight": "bold"
     }
   }
 }
