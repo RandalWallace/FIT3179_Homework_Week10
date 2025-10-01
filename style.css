@@ -59,22 +59,24 @@ h2 {
   color: var(--accent-color);
 }
 
-/* ===== Map ===== */
-#map.full-width {
-  width: 85%;              /* use percentage of container, not viewport */
-  margin: 0 auto;          /* center horizontally */
-  display: block;
+/* ===== Map (center fix) ===== */
+#map.chart.full-width {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 85% !important;
+  max-width: 1000px;
   height: auto !important;
   min-height: 0;
 }
 
-/* Center text under map */
-.chart-section .chart-text {
-  text-align: center;      /* center text */
-  margin: 20px auto 0;     /* keep it centered with auto margins */
-  max-width: 700px;        /* prevent super-wide lines */
+/* Only center the text under the map */
+#map.full-width + .chart-text {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px;
 }
-
 
 /* ===== Flex Layouts ===== */
 .chart-row {
