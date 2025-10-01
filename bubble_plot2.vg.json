@@ -59,8 +59,6 @@
     { "calculate": "format(datum.UnemploymentRate, '.1f') + '%'", "as": "Unemp_fmt" },
     { "calculate": "format(datum.InboundTourism, '.2s')", "as": "Tourism_fmt" },
     { "calculate": "'$' + format(datum.GDP_PPP, ',.0f')", "as": "GDP_fmt" },
-
-    /* ---- Outlier selection ---- */
     { "window": [{"op": "rank", "as": "rank_high"}], "sort": [{"field": "InboundTourism", "order": "descending"}]},
     { "window": [{"op": "rank", "as": "rank_low"}], "sort": [{"field": "InboundTourism", "order": "ascending"}]},
     {
