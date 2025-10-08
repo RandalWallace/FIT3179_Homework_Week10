@@ -8,7 +8,7 @@
     "fontSize": 20,
     "fontWeight": "bold",
     "anchor": "middle",
-    "font": "Montserrat"   
+    "font": "Montserrat"
   },
   "config": {
     "axis": {"labelFont": "Montserrat", "titleFont": "Montserrat"},
@@ -16,11 +16,7 @@
     "header": {"labelFont": "Montserrat", "titleFont": "Montserrat"},
     "title": {"font": "Montserrat"}
   },
-  "projection": {
-    "type": "equirectangular",
-    "scale": 200,
-    "translate": [750, 350]   
-  },
+  "projection": {"type": "equirectangular", "scale": 200, "translate": [750, 350]},
   "layer": [
     {
       "data": {
@@ -36,13 +32,10 @@
               "url": "https://raw.githubusercontent.com/RandalWallace/FIT3179_Assignment2/main/data/minimum_wage.csv"
             },
             "key": "Country",
-            "fields": ["Hourly-PPP (Int$)"]
+            "fields": ["Hourly-PPP (Int$)", "Effective per"]
           }
         },
-        {
-          "calculate": "isValid(datum['Hourly-PPP (Int$)']) ? datum['Hourly-PPP (Int$)'] : 0",
-          "as": "HourlyPPP_Zero"
-        },
+        {"calculate": "isValid(datum['Hourly-PPP (Int$)']) ? datum['Hourly-PPP (Int$)'] : 0", "as": "HourlyPPP_Zero"},
         {
           "calculate": "datum.HourlyPPP_Zero === 0 ? 'No Data Available' : '$' + format(datum.HourlyPPP_Zero, '.2f')",
           "as": "formatted_wage"
@@ -60,13 +53,14 @@
             "labelFontSize": 10,
             "symbolSize": 60,
             "labelLimit": 0,
-            "labelFont": "Montserrat", 
-            "titleFont": "Montserrat"  
+            "labelFont": "Montserrat",
+            "titleFont": "Montserrat"
           }
         },
         "tooltip": [
-          {"field": "properties.NAME", "type": "nominal", "title": "🌍 Country"},
-          {"field": "formatted_wage", "type": "nominal", "title": "💰 Hourly Minimum Wage (PPP)"}
+          {"field": "properties.NAME", "title": "🌍 Country"},
+          {"field": "formatted_wage", "title": "💰 Hourly Minimum Wage (PPP)"},
+          {"field": "Effective per", "title": "📅 Effective As Of"}
         ]
       }
     },
@@ -109,40 +103,77 @@
           "as": "happiness_category"
         }
       ],
-      "mark": {
-        "type": "rule",
-        "stroke": "#8e44ad",
-        "strokeWidth": 2,
-        "opacity": 0.9
-      },
+      "mark": {"type": "rule", "stroke": "#F0982E", "strokeWidth": 2.5},
       "encoding": {
-        "longitude": {"field": "properties.LABEL_X", "type": "quantitative"},
-        "latitude": {"field": "properties.LABEL_Y", "type": "quantitative"},
-        "longitude2": {"field": "properties.LABEL_X", "type": "quantitative"},
-        "latitude2": {"field": "spike_end_lat", "type": "quantitative"},
-        "strokeWidth": {
+        "longitude": {"field": "properties.LABEL_X"},
+        "latitude": {"field": "properties.LABEL_Y"},
+        "longitude2": {"field": "properties.LABEL_X"},
+        "latitude2": {"field": "spike_end_lat"},
+        "opacity": {
           "field": "Happiness Score",
           "type": "quantitative",
-          "scale": {"range": [1, 25]},
-          "title": "Happiness Score",
+          "scale": {"domain": [1, 10], "range": [0, 1]},
+          "title": "Happiness Score (Length & Intensity)",
           "legend": {
             "orient": "bottom",
             "columns": 5,
             "labelFontSize": 10,
             "symbolSize": 60,
             "labelLimit": 0,
-            "labelFont": "Montserrat",   
-            "titleFont": "Montserrat"   
+            "labelFont": "Montserrat",
+            "titleFont": "Montserrat"
           }
         },
         "tooltip": [
-          {"field": "properties.SUBUNIT", "type": "nominal", "title": "🌍 Country"},
-          {"field": "happiness_category", "type": "nominal", "title": "😊 Happiness Level"},
+          {"field": "properties.SUBUNIT", "title": "🌍 Country"},
+          {"field": "happiness_category", "title": "😊 Happiness Level"},
           {"field": "Happiness Score", "type": "quantitative", "title": "📊 Happiness Score", "format": ".2f"},
-          {"field": "formatted_rank", "type": "nominal", "title": "🏆 Global Ranking"},
+          {"field": "formatted_rank", "title": "🏆 Global Ranking"},
           {"field": "Health (Life Expectancy)", "type": "quantitative", "title": "🏥 Life Expectancy Index", "format": ".3f"}
         ]
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "country": "Australia",
+            "lon": 135,
+            "lat": -25,
+            "label_lon": 125,
+            "label_lat": -45,
+            "note": "Australia"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "font": "Montserrat",
+            "fontSize": 15,
+            "fontWeight": "bold",
+            "align": "center",
+            "dx": 5,
+            "dy": 5
+          },
+          "encoding": {
+            "longitude": {"field": "label_lon"},
+            "latitude": {"field": "label_lat"},
+            "text": {"field": "note"},
+            "color": {"value": "#2c3e50"}
+          }
+        },
+        {
+          "mark": {"type": "rule", "stroke": "#2c3e50", "strokeDash": [4, 2], "strokeWidth": 1.5},
+          "encoding": {
+            "longitude": {"field": "lon"},
+            "latitude": {"field": "lat"},
+            "longitude2": {"field": "label_lon"},
+            "latitude2": {"field": "label_lat"}
+          }
+        }
+      ]
     }
   ]
 }
